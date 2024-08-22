@@ -14,8 +14,8 @@ function run_() {
 
 }
 // Includi la libreria XLSX tramite CDN
-includeScript("https://raw.githubusercontent.com/pBielli/bookmarklet/main/AzzurroZCS/EnergyDataProcessor.js");
-includeScript("https://raw.githubusercontent.com/pBielli/bookmarklet/main/Utils/excel_functions.js");
+includeScript("https://cdn.jsdelivr.net/gh/pBielli/bookmarklet@9bf405b103a5ee2a81f3625e00d4f4ed6d0c827f/AzzurroZCS/EnergyDataProcessor.js");
+includeScript("https://cdn.jsdelivr.net/gh/pBielli/bookmarklet@9bf405b103a5ee2a81f3625e00d4f4ed6d0c827f/Utils/excel_functions.js");
 
 clear();
 setTimeout(run_, 2500);
