@@ -11,8 +11,7 @@ includeScript("https://unpkg.com/xlsx/dist/xlsx.full.min.js");
 
 // Funzione per convertire un oggetto in Excel e scaricarlo
 function convertObjectToExcel(obj, fileName, sheetName) {
-    // Assicurati che la libreria sia caricata prima di eseguire il codice
-    script.onload = function() {
+
         // Converti l'oggetto in un array di array (AOA) per il foglio di lavoro
         const headers = Object.keys(obj[0]); // Ottieni le chiavi come intestazioni
         const dati = [headers]; // Inizia con le intestazioni
@@ -50,7 +49,7 @@ function convertObjectToExcel(obj, fileName, sheetName) {
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
-    };
+    
 }
 
 
