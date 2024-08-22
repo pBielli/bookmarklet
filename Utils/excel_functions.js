@@ -54,4 +54,3 @@ function convertObjectToExcel(obj, fileName, sheetName) {
 }
 
 
-convertObjectToExcel(exampleData, 'esempio_file', 'Foglio1');

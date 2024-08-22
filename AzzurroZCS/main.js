@@ -12,8 +12,9 @@ function run_() {
     energyDataProcessor = new EnergyDataProcessor();
     energyData = energyDataProcessor.processEnergyData();
     console.log(energyData);
+    convertObjectToExcel(energyData, 'esempio_file', 'energyData');
 
 }
 // Includi la libreria XLSX tramite CDN
-includeScript("https://cdn.jsdelivr.net/gh/pBielli/bookmarklet@9bf405b103a5ee2a81f3625e00d4f4ed6d0c827f/AzzurroZCS/EnergyDataProcessor.js");
-includeScript("https://cdn.jsdelivr.net/gh/pBielli/bookmarklet@9bf405b103a5ee2a81f3625e00d4f4ed6d0c827f/Utils/excel_functions.js");
+includeScript("https://cdn.jsdelivr.net/gh/pBielli/bookmarklet@7381b69dd514365d2f1d449849917996c8ba356b/AzzurroZCS/EnergyDataProcessor.js");
+includeScript("https://cdn.jsdelivr.net/gh/pBielli/bookmarklet@7381b69dd514365d2f1d449849917996c8ba356b/Utils/excel_functions.js");
