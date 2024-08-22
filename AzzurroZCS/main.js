@@ -4,15 +4,17 @@ function includeScript(src) {
     document.head.appendChild(script);
 }
 function run_() {
-    clear();
     var energyDataProcessor, energyData;
-    alert("AVVIO");
 
     // Esecuzione del codice
     energyDataProcessor = new EnergyDataProcessor();
     energyData = energyDataProcessor.processEnergyData();
-    console.log(energyData);
+
+    clear();
+    console.log("energyData:",energyData);
+    console.log("Inizio conversione in file excel...");
     convertObjectToExcel(energyData, 'esempio_file', 'energyData');
+    console.log("Fine.");
 
 }
 // Includi la libreria XLSX tramite CDN
