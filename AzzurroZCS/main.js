@@ -3,12 +3,8 @@ function includeScript(src) {
     script.src = src;
     document.head.appendChild(script);
 }
-function test(console) {
-    
-    console.clear();
-    console.log("TEST");
-}
-    function run_(console) {
+
+function run_(console) {
     var energyDataProcessor, energyData;
 
     // Esecuzione del codice
@@ -24,4 +20,4 @@ function test(console) {
 }
 // Includi la libreria XLSX tramite CDN
 includeScript("https://cdn.jsdelivr.net/gh/pBielli/bookmarklet@3516c0b72611a4f0ee86ebb9f46f723958e87960/AzzurroZCS/EnergyDataProcessor.js");
-includeScript("https://cdn.jsdelivr.net/gh/pBielli/bookmarklet@68abbc2a543cca49833b1f8cae3a0b6fc11ed5b3/Utils/excel_functions.js");
+includeScript("https://cdn.jsdelivr.net/gh/pBielli/bookmarklet@379dcc8c48cd69f77c1ae6592782032ede2aaf3b/Utils/excel_functions.js");
