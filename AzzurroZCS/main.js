@@ -3,7 +3,12 @@ function includeScript(src) {
     script.src = src;
     document.head.appendChild(script);
 }
-function run_(console) {
+function test(console) {
+    
+    console.clear();
+    console.log("TEST");
+}
+    function run_(console) {
     var energyDataProcessor, energyData;
 
     // Esecuzione del codice
