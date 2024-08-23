@@ -2,8 +2,8 @@
 
 class EnergyDataProcessor {
     constructor() {
-        this.energyCards = {}; // Oggetto per memorizzare le card di energia
-        this.energyData = {};  // Oggetto per memorizzare i risultati elaborati
+        this.energyCards = []; // Oggetto per memorizzare le card di energia
+        this.energyData = [];  // Oggetto per memorizzare i risultati elaborati
     }
 
     // Funzione per estrarre e convertire i valori dal testo
