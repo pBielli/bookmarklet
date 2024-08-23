@@ -22,8 +22,9 @@ async function run_(console) {
     const excelBuffer = await convertObjectToExcel(energyData, 'energyData');
 
     console.log("Aggiunta img al file excel...");
-   // Aggiungi l'immagine al file Excel
-   const updatedExcelBuffer = await appendImageToExcel(excelBuffer, canvas, 'energyData', 'A30');
+    
+    // Aggiungi l'immagine al file Excel
+    const updatedExcelBuffer = await appendImageToExcel(excelBuffer, canvas, 'energyData', 'A32',{ width: 1452, height: 400 });
 
 
     // Scarica il file Excel aggiornato
