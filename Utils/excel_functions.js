@@ -46,7 +46,7 @@ async function convertObjectToExcel(obj, sheetName) {
 
 // Funzione per creare un file Excel con un'immagine
 // Funzione per aggiungere un'immagine a un file Excel esistente
-async function appendImageToExcel(buffer, canvas, sheetName, cellAddress="A1",dimensions={ width: 600, height: 400 }) {
+async function appendImageToExcel(buffer, canvas, sheetName, cellAddress={ col: 0, row: 0 },dimensions={ width: 600, height: 400 }) {
     const workbook = new ExcelJS.Workbook();
     await workbook.xlsx.load(buffer);
     const worksheet = workbook.getWorksheet(sheetName);
@@ -62,7 +62,7 @@ async function appendImageToExcel(buffer, canvas, sheetName, cellAddress="A1",di
 
     // Inserisci l'immagine in una cella specifica
     worksheet.addImage(imageId, {
-        tl: { col: cellAddress.charCodeAt(0) - 65, row: parseInt(cellAddress[1]) - 1 }, // Indica la posizione della cella (es. 'A1')
+        tl: cellAddress, // Indica la posizione della cella (es. 'A1')
         ext: dimensions, // Dimensioni dell'immagine in pixel
     });
 

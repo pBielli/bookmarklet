@@ -13,7 +13,6 @@ async function run_(console) {
     energyDataProcessor = new EnergyDataProcessor();
     energyData = energyDataProcessor.processEnergyData();
 
-    
     console.clear();
     console.log("energyData:",energyData);
     console.log("Inizio conversione in file excel...");
@@ -24,13 +23,11 @@ async function run_(console) {
     console.log("Aggiunta img al file excel...");
 
     // Aggiungi l'immagine al file Excel
-    const updatedExcelBuffer = await appendImageToExcel(excelBuffer, canvas, 'energyData', 'A50',{ width: 1452, height: 400 });
-
+    const updatedExcelBuffer = await appendImageToExcel(excelBuffer, canvas, 'energyData', { col: 0, row: 8 },{ width: 1452, height: 400 });
 
     // Scarica il file Excel aggiornato
     downloadExcel(updatedExcelBuffer, fileName);
     console.log("Fine.");
-
 }
 // Includi la libreria XLSX tramite CDN
 const srv="https://cdn.jsdelivr.net/gh/pBielli/bookmarklet@0b1b678c40edf886ea1983441842c42b90dc0bbb";
