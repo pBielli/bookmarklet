@@ -19,5 +19,5 @@ function run_(console) {
 
 }
 // Includi la libreria XLSX tramite CDN
-includeScript("https://cdn.jsdelivr.net/gh/pBielli/bookmarklet@1893a631ffdd1422352786922a234dac6c11d877/AzzurroZCS/EnergyDataProcessor.min.js");
+includeScript("https://cdn.jsdelivr.net/gh/pBielli/bookmarklet@b27902ebdd6b3a8098ace921b28acdd4410f0ed0/AzzurroZCS/EnergyDataProcessor.min.js");
 includeScript("https://cdn.jsdelivr.net/gh/pBielli/bookmarklet@e6045ed2af8bde195e84509ae23666eb84c4a854/Utils/excel_functions.min.js");
