@@ -7,10 +7,12 @@ document.head.appendChild(script);
 }
 
 // Includi la libreria XLSX tramite CDN
-includeScript("https://unpkg.com/xlsx/dist/xlsx.full.min.js");
+includeScript("https://unpkg.com/exceljs/dist/exceljs.min.js");
 
 // Funzione per convertire un oggetto in Excel e scaricarlo
-function convertObjectToExcel(obj, fileName, sheetName) {
+async function convertObjectToExcel(obj, sheetName) {
+    const workbook = new ExcelJS.Workbook();
+    const worksheet = workbook.addWorksheet(sheetName);
 
     // Ottieni i nomi degli oggetti (le chiavi principali dell'oggetto)
     const nomiOggetti = Object.keys(obj);
@@ -23,7 +25,7 @@ function convertObjectToExcel(obj, fileName, sheetName) {
 
     // Ottieni le chiavi per le intestazioni dalla prima entry
     const headers = Object.keys(obj[nomiOggetti[0]]);
-    
+
     // Aggiungi la colonna "nome oggetto" come prima intestazione
     const dati = [['---', ...headers]];
 
@@ -34,28 +36,43 @@ function convertObjectToExcel(obj, fileName, sheetName) {
         dati.push(riga);
     });
 
-    // Crea un nuovo foglio di lavoro
-    const foglioDiLavoro = XLSX.utils.aoa_to_sheet(dati);
+    // Aggiungi i dati al foglio di lavoro
+    worksheet.addRows(dati);
 
-    // Crea una nuova cartella di lavoro
-    const cartellaDiLavoro = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(cartellaDiLavoro, foglioDiLavoro, sheetName);
+    // Salva il file Excel
+    const buffer = await workbook.xlsx.writeBuffer();
+    return buffer;
+}
 
-    // Converte la cartella di lavoro in un file Excel (formato .xlsx)
-    const fileExcel = XLSX.write(cartellaDiLavoro, { bookType: 'xlsx', type: 'binary' });
+// Funzione per creare un file Excel con un'immagine
+// Funzione per aggiungere un'immagine a un file Excel esistente
+async function appendImageToExcel(buffer, canvas, sheetName, cellAddress="A1",dimensions={ width: 600, height: 400 }) {
+    const workbook = new ExcelJS.Workbook();
+    await workbook.xlsx.load(buffer);
+    const worksheet = workbook.getWorksheet(sheetName);
 
-    // Funzione per trasformare i dati binari in un Blob
-    function s2ab(s) {
-        const buf = new ArrayBuffer(s.length);
-        const view = new Uint8Array(buf);
-        for (let i = 0; i < s.length; i++) {
-            view[i] = s.charCodeAt(i) & 0xFF;
-        }
-        return buf;
-    }
+    // Converti il canvas in Base64
+    const base64Image = canvasImageToBase64(canvas);
 
-    // Crea un Blob e scarica il file
-    const blob = new Blob([s2ab(fileExcel)], { type: "application/octet-stream" });
+    // Aggiungi una nuova immagine
+    const imageId = workbook.addImage({
+        base64: base64Image,
+        extension: 'png',
+    });
+
+    // Inserisci l'immagine in una cella specifica
+    worksheet.addImage(imageId, {
+        tl: { col: cellAddress.charCodeAt(0) - 65, row: parseInt(cellAddress[1]) - 1 }, // Indica la posizione della cella (es. 'A1')
+        ext: dimensions, // Dimensioni dell'immagine in pixel
+    });
+
+    // Restituisci il buffer aggiornato del workbook
+    return await workbook.xlsx.writeBuffer();
+}
+
+// Funzione per scaricare il file Excel
+function downloadExcel(buffer, fileName = "file") {
+    const blob = new Blob([buffer], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
     const link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
     link.download = fileName + '.xlsx';
