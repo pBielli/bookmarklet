@@ -3,14 +3,14 @@ function includeScript(src) {
     script.src = src;
     document.head.appendChild(script);
 }
-function run_() {
+function run_(console) {
     var energyDataProcessor, energyData;
 
     // Esecuzione del codice
     energyDataProcessor = new EnergyDataProcessor();
     energyData = energyDataProcessor.processEnergyData();
 
-    clear();
+    console.clear();
     console.log("energyData:",energyData);
     console.log("Inizio conversione in file excel...");
     convertObjectToExcel(energyData, 'esempio_file', 'energyData');
