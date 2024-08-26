@@ -30,7 +30,7 @@ async function run_(console) {
     console.log("Fine.");
 }
 // Includi la libreria XLSX tramite CDN
-const srv="https://cdn.jsdelivr.net/gh/pBielli/bookmarklet@8ddd641b4d619ccab130fb6361eabe34d2fbc1b1";
+const srv="https://raw.githubusercontent.com/pBielli/bookmarklet/main";
 includeScript(srv+"/AzzurroZCS/EnergyDataProcessor.min.js");
 includeScript(srv+"/Utils/excel_functions.min.js");
 includeScript(srv+"/Utils/utils.min.js");
