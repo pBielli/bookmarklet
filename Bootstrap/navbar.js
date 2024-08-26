@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
+function nvbr() {
     // Configurazioni
     const logoSrc = 'https://www.cemambiente.it/wp-content/themes/cemAmbiente/img/logo_50.png'; // Modifica con il percorso del tuo logo
     const logoAlt = 'Logo CEM'; // Testo alternativo per il logo
@@ -85,4 +85,4 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Aggiungi la navbar al body
     document.body.prepend(navbar);
-});
+}
