@@ -1,8 +1,3 @@
-if (typeof BTS_NAVBARJS !== 'undefined')
-    throw new Error("Script yet included!");
-    
-var BTS_NAVBARJS=true;
-
 // Funzione per creare la navbar
 function createNavbar(logoSrc, logoAlt) {
     const navbar = document.createElement('nav');
@@ -139,24 +134,24 @@ function createDropdown(dropdown) {
 }
 
 // Funzione per inizializzare la navbar
-function initNavbar() {
+function exampleNavbar() {
     // Configurazioni
     const logoSrc = 'https://www.cemambiente.it/wp-content/themes/cemAmbiente/img/logo_50.png'; // Modifica con il percorso del tuo logo
     // const logoSrc = 'https://avatars.githubusercontent.com/u/40484128?v=4';
-    const logoAlt = 'Logo PAT';
+    const logoAlt = 'Logo CEM Ambiente';
 
     // Definisci gli elementi della navbar
     const navItems = [
         { type: 'link', title: 'Bookmarklets', href: 'https://github.com/pBielli/bookmarklet' },
-        {
-            type: 'dropdown', title: 'Comandi AzzurroZCS', elements: [
-                { type: 'link', title: 'AzzurroZCS', href: 'https://zcsazzurrosystemsweb.com/customer/e438305f-c279/overview' },
-                { type: 'separator' },
-                { type: 'button', title: 'Download Excel', onclick: function() { run_();alert('Download eseguito!'); } },
-            ]
-        }
+        { type: 'link', title: 'Cem Ambiente', href: 'https://cemambiente.it' },
+        { type: 'link', title: 'Cem Facile', href: 'https://cemambiente.it/cemfacile' },
+        { type: 'link', title: 'Gastone', href: 'https://gastone.cemambiente.it' },
+        
     ];
 
+    insertNavbar(logoSrc,logoAlt,navItems);
+}
+function insertNavbar(logoSrc,logoAlt,navItems) {
     // Crea la navbar
     const { navbar, navbarNav } = createNavbar(logoSrc, logoAlt);
 

@@ -1,9 +1,3 @@
-if (typeof UTILS_FUNCTIONSJS !== 'undefined')
-    throw new Error("Script yet included!");
-    
-var UTILS_FUNCTIONSJS=true;
-
-
 function includeResource(src, type = 'script') {
     const param = "v";
     const flag=src.indexOf('?')> 0;
