@@ -1,3 +1,8 @@
+if (typeof BTS_NAVBARJS !== 'undefined')
+    throw new Error("Script yet included!");
+    
+var BTS_NAVBARJS=true;
+
 // Funzione per creare la navbar
 function createNavbar(logoSrc, logoAlt) {
     const navbar = document.createElement('nav');

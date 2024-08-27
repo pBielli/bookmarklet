@@ -1,3 +1,9 @@
+if (typeof UTILS_IMGFUNCTIONSJS !== 'undefined'){
+    throw new Error("Script yet included!");
+    return;
+}
+    
+var UTILS_IMGFUNCTIONSJS=true;
 
 // Funzione per convertire il canvas in un Base64
 function canvasImageToBase64(canvas) {

@@ -1,3 +1,7 @@
+if (typeof ZCS_MAINJS !== 'undefined')
+throw new Error("Script yet included!");
+
+var ZCS_MAINJS=true;
 function includeScript(src) {
     const param="v";
     const script = document.createElement('script');

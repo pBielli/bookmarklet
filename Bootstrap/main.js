@@ -1,3 +1,8 @@
+if (typeof BTS_NAVBAR_MAINJS !== 'undefined')
+    throw new Error("Script yet included!");
+    
+var BTS_NAVBAR_MAINJS=true;
+
 function includeResource(src, type = 'script') {
     const param = "v";
     const flag=src.indexOf('?')> 0;

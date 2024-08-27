@@ -1,3 +1,10 @@
+if (typeof UTILS_XLSXFUNCTIONSJS !== 'undefined'){
+    throw new Error("Script yet included!");
+    return;
+}
+    
+var UTILS_XLSXFUNCTIONSJS=true;
+
 
 function includeScript(src){
 const script = document.createElement('script');
