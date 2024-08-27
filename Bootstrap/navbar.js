@@ -1,17 +1,8 @@
-function nvbr() {
-    // Configurazioni
-    const logoSrc = 'https://www.cemambiente.it/wp-content/themes/cemAmbiente/img/logo_50.png'; // Modifica con il percorso del tuo logo
-    const logoAlt = 'Logo CEM'; // Testo alternativo per il logo
-    const navItems = [
-        { title: 'Dropdown 1', items: ['Option 1', 'Option 2'] },
-        { title: 'Dropdown 2', items: ['Option A', 'Option B'] }
-    ];
-    
-    // Crea la navbar
+// Funzione per creare la navbar
+function createNavbar(logoSrc, logoAlt) {
     const navbar = document.createElement('nav');
     navbar.classList.add('navbar', 'navbar-expand-lg', 'navbar-light', 'bg-light');
 
-    // Crea il contenitore della navbar
     const container = document.createElement('div');
     container.classList.add('container-fluid');
     navbar.appendChild(container);
@@ -50,39 +41,127 @@ function nvbr() {
     navbarNav.classList.add('navbar-nav');
     collapse.appendChild(navbarNav);
 
-    // Aggiungi i pulsanti a discesa
+    return { navbar, navbarNav };
+}
+
+// Funzione per creare un elemento della navbar
+function createNavbarElement(element) {
+    switch (element.type) {
+        case 'button':
+            return createButton(element);
+        case 'link':
+            return createLink(element);
+        case 'separator':
+            return createSeparator();
+        case 'dropdown':
+            return createDropdown(element);
+        default:
+            throw new Error('Tipo di elemento non supportato');
+    }
+}
+
+function createButton(button) {
+    const li = document.createElement('li');
+    li.classList.add('nav-item');
+    
+    const btn = document.createElement('button');
+    btn.classList.add('btn', 'nav-link');
+    btn.textContent = button.title;
+    btn.onclick = button.onclick;
+    
+    li.appendChild(btn);
+    return li;
+}
+
+function createLink(link) {
+    const li = document.createElement('li');
+    li.classList.add('nav-item');
+    
+    const a = document.createElement('a');
+    a.classList.add('nav-link');
+    a.href = link.href;
+    a.textContent = link.title;
+    
+    li.appendChild(a);
+    return li;
+}
+
+function createSeparator() {
+    const li = document.createElement('li');
+    li.classList.add('nav-item');
+    
+    const separator = document.createElement('hr');
+    separator.classList.add('dropdown-divider');
+    
+    li.appendChild(separator);
+    return li;
+}
+
+function createDropdown(dropdown) {
+    const li = document.createElement('li');
+    li.classList.add('nav-item', 'dropdown');
+    
+    const a = document.createElement('a');
+    a.classList.add('nav-link', 'dropdown-toggle');
+    a.href = '#';
+    a.id = `${dropdown.title.replace(/\s+/g, '')}Dropdown`;
+    a.setAttribute('role', 'button');
+    a.setAttribute('data-bs-toggle', 'dropdown');
+    a.setAttribute('aria-expanded', 'false');
+    a.textContent = dropdown.title;
+    
+    const dropdownMenu = document.createElement('ul');
+    dropdownMenu.classList.add('dropdown-menu');
+    dropdownMenu.setAttribute('aria-labelledby', a.id);
+
+    // Aggiungi elementi al dropdown
+    dropdown.elements.forEach(subElement => {
+        const dropdownItem = createNavbarElement(subElement);
+        dropdownMenu.appendChild(dropdownItem);
+    });
+
+    li.appendChild(a);
+    li.appendChild(dropdownMenu);
+    return li;
+}
+
+// Funzione per inizializzare la navbar
+function initNavbar() {
+    // Configurazioni
+    const logoSrc = 'https://www.cemambiente.it/wp-content/themes/cemAmbiente/img/logo_50.png';
+    const logoAlt = 'Logo CEM';
+
+    // Definisci gli elementi della navbar
+    const navItems = [
+        { type: 'button', title: 'Bottone Esempio', onclick: function() { alert('Bottone cliccato!'); } },
+        { type: 'link', title: 'Link Esempio', href: 'https://www.google.com' },
+        { type: 'separator' },
+        {
+            type: 'dropdown', title: 'Lista di Cose', elements: [
+                { type: 'button', title: 'Bottone nel Dropdown', onclick: function() { alert('Bottone nel dropdown!'); } },
+                { type: 'link', title: 'Link nel Dropdown', href: 'https://www.google.com' },
+                { type: 'separator' },
+                {
+                    type: 'dropdown', title: 'Sotto Dropdown', elements: [
+                        { type: 'button', title: 'Bottone nel Sotto Dropdown', onclick: function() { alert('Bottone nel sotto dropdown!'); } }
+                    ]
+                }
+            ]
+        }
+    ];
+
+    // Crea la navbar
+    const { navbar, navbarNav } = createNavbar(logoSrc, logoAlt);
+
+    // Aggiungi gli elementi alla navbar
     navItems.forEach(item => {
-        const li = document.createElement('li');
-        li.classList.add('nav-item', 'dropdown');
-        
-        const a = document.createElement('a');
-        a.classList.add('nav-link', 'dropdown-toggle');
-        a.href = '#';
-        a.id = `${item.title.replace(/\s+/g, '')}Dropdown`;
-        a.setAttribute('role', 'button');
-        a.setAttribute('data-bs-toggle', 'dropdown');
-        a.setAttribute('aria-expanded', 'false');
-        a.textContent = item.title;
-
-        const dropdownMenu = document.createElement('ul');
-        dropdownMenu.classList.add('dropdown-menu');
-        dropdownMenu.setAttribute('aria-labelledby', a.id);
-        
-        item.items.forEach(subItem => {
-            const dropdownItem = document.createElement('li');
-            const dropdownLink = document.createElement('a');
-            dropdownLink.classList.add('dropdown-item');
-            dropdownLink.href = '#';
-            dropdownLink.textContent = subItem;
-            dropdownItem.appendChild(dropdownLink);
-            dropdownMenu.appendChild(dropdownItem);
-        });
-
-        li.appendChild(a);
-        li.appendChild(dropdownMenu);
-        navbarNav.appendChild(li);
+        const element = createNavbarElement(item);
+        navbarNav.appendChild(element);
     });
 
     // Aggiungi la navbar al body
     document.body.prepend(navbar);
 }
+
+// Inizializza la navbar quando la pagina è pronta
+document.addEventListener('DOMContentLoaded', initNavbar);
