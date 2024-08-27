@@ -38,4 +38,4 @@ const srv="https://pbielli.github.io/bookmarklet";
 includeScript(srv+"/AzzurroZCS/EnergyDataProcessor.js");
 includeScript(srv+"/Utils/excel_functions.js");
 includeScript(srv+"/Utils/image_functions.js");
-includeScript(srv+"/Utils/utils.min.js");
+includeScript(srv+"/Utils/utils.js");
