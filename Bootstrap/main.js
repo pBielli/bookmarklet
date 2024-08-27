@@ -1,8 +1,9 @@
 function includeResource(src, type = 'script') {
     const param = "v";
+    const flag=src.indexOf('?')> 0;
     const timestamp = new Date().getTime();
-    const separator = (src.indexOf('?') > 0) ? '&' : '?';
-    const versionParam = param + ((src.indexOf(param) > 0) ? '_extra' : '') + '=' + timestamp;
+    const separator = (flag) ? '&' : '?';
+    const versionParam = param + ((flag && src.indexOf(param,src.indexOf('?')) > 0) ? '_extra' : '') + '=' + timestamp;
 
     if (type === 'script') {
         const script = document.createElement('script');
@@ -19,5 +20,6 @@ function includeResource(src, type = 'script') {
         console.error('Unsupported resource type:', type);
     }
 }
+includeResource("https://pbielli.github.io/bookmarklet/Bootstrap/navbar.js","script");
 includeResource("https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js","script");
 includeResource("https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css","css");

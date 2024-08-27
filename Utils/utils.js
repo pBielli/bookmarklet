@@ -1,8 +1,9 @@
 function includeResource(src, type = 'script') {
     const param = "v";
+    const flag=src.indexOf('?')> 0;
     const timestamp = new Date().getTime();
-    const separator = (src.indexOf('?') > 0) ? '&' : '?';
-    const versionParam = param + ((src.indexOf(param) > 0) ? '_extra' : '') + '=' + timestamp;
+    const separator = (flag) ? '&' : '?';
+    const versionParam = param + ((flag && src.indexOf(param,src.indexOf('?')) > 0) ? '_extra' : '') + '=' + timestamp;
 
     if (type === 'script') {
         const script = document.createElement('script');
