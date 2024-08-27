@@ -2,7 +2,6 @@ function includeScript(src) {
     const param="v";
     const script = document.createElement('script');
     script.src = src + ((src.indexOf('?')>0)?'&':'?')
-                    +'parameterForCaching'+((src.indexOf('?')>0)?'&':'?')
                     + param+((src.indexOf(param)>0)?'_extra':'')
                     + '=' + new Date().getTime();
     console.log(`includeScript -> ${script.src}`)
@@ -37,5 +36,6 @@ async function run_(console) {
 // Includi la libreria XLSX tramite CDN -
 const srv="https://cdn.jsdelivr.net/gh/pBielli/bookmarklet@8ddd641b4d619ccab130fb6361eabe34d2fbc1b1";
 includeScript(srv+"/AzzurroZCS/EnergyDataProcessor.min.js");
-includeScript(srv+"/Utils/excel_functions.min.js");
+includeScript(srv+"/Utils/excel_functions.js");
+includeScript(srv+"/Utils/image_functions.js");
 includeScript(srv+"/Utils/utils.min.js");
