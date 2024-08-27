@@ -1,7 +1,5 @@
-if (typeof UTILS_IMGFUNCTIONSJS !== 'undefined'){
+if (typeof UTILS_IMGFUNCTIONSJS !== 'undefined')
     throw new Error("Script yet included!");
-    return;
-}
     
 var UTILS_IMGFUNCTIONSJS=true;
 

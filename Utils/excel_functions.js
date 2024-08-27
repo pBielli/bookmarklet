@@ -1,7 +1,5 @@
-if (typeof UTILS_XLSXFUNCTIONSJS !== 'undefined'){
+if (typeof UTILS_XLSXFUNCTIONSJS !== 'undefined')
     throw new Error("Script yet included!");
-    return;
-}
     
 var UTILS_XLSXFUNCTIONSJS=true;
 

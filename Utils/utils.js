@@ -1,7 +1,5 @@
-if (typeof UTILS_FUNCTIONSJS !== 'undefined'){
+if (typeof UTILS_FUNCTIONSJS !== 'undefined')
     throw new Error("Script yet included!");
-    return;
-}
     
 var UTILS_FUNCTIONSJS=true;
 
