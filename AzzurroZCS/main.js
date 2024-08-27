@@ -1,4 +1,3 @@
-
 //funzione per includere le risorse e inserire la navbar
 function startup(){
     // Includi la libreria XLSX tramite CDN -
@@ -13,8 +12,7 @@ function startup(){
     includeResource("https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js","script");
     includeResource("https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css","css");
 
-    setTimeout(()=>{initNavbar();alert(1);},2000);
-    alert("Caricamento in corso...");
+    setTimeout(()=>{initNavbar();},2000);
 }
 // Funzione per estrarre i dati dalla pagna e salvarli in un file excel
 async function downloadData() {
@@ -28,19 +26,14 @@ async function downloadData() {
 
     console.clear();
     console.log("energyData:",energyData);
-    console.log("Inizio conversione in file excel...");
-
     // Converti l'oggetto in Excel
     const excelBuffer = await convertObjectToExcel(energyData, 'energyData');
-
-    console.log("Aggiunta img al file excel...");
 
     // Aggiungi l'immagine al file Excel
     const updatedExcelBuffer = await appendImageToExcel(excelBuffer, canvas, 'energyData', { col: 0, row: 8 },{ width: 1452, height: 400 });
 
     // Scarica il file Excel aggiornato
     downloadExcel(updatedExcelBuffer, fileName);
-    console.log("Fine.");
 }
 // Funzione per inserire la navbar
 function initNavbar() {
@@ -56,7 +49,7 @@ function initNavbar() {
             type: 'dropdown', title: 'Comandi AzzurroZCS', elements: [
                 { type: 'link', title: 'AzzurroZCS', href: 'https://zcsazzurrosystemsweb.com/customer/e438305f-c279/overview' },
                 { type: 'separator' },
-                { type: 'button', title: 'Download Excel', onclick: function() { downloadData();alert('Download eseguito!'); } },
+                { type: 'button', title: 'Download Excel', onclick: function() { downloadData(); } },
             ]
         }
     ];
