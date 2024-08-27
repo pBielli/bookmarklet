@@ -8,7 +8,7 @@ function includeScript(src) {
     document.head.appendChild(script);
 }
 
-async function run_(console) {
+async function run_(console=console) {
     var energyDataProcessor, energyData;
     var fileName=`EnergyData - ${document.getElementById("mat-input-6").value}`;
     var canvas=document.querySelector("lib-monthly-yearly-energy-overview #energy-overview canvas");
