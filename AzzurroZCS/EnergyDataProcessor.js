@@ -8,7 +8,8 @@ class EnergyDataProcessor {
 
     // Funzione per estrarre e convertire i valori dal testo
     parseValue(value) {
-        return parseFloat(value.replace(',', '.').trim()) || 0; // Gestione valori non numerici
+        var without_points= value.replace('.', '').trim();
+        return parseFloat(without_points.replace(',', '.').trim()) || 0; // Gestione valori non numerici
     }
 
     // Funzione per aggiungere elementi al dizionario delle energyCards
