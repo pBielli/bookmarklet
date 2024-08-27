@@ -122,30 +122,32 @@ function createDropdown(dropdown) {
 
     li.appendChild(a);
     li.appendChild(dropdownMenu);
+
+    // Gestione dropdown annidati
+    li.addEventListener('click', function (event) {
+        if (event.target.classList.contains('dropdown-toggle')) {
+            event.stopPropagation(); // Previene la chiusura del dropdown padre
+        }
+    });
+
     return li;
 }
 
 // Funzione per inizializzare la navbar
 function initNavbar() {
     // Configurazioni
-    const logoSrc = 'https://www.cemambiente.it/wp-content/themes/cemAmbiente/img/logo_50.png';
-    const logoAlt = 'Logo CEM';
+    const logoSrc = 'https://www.cemambiente.it/wp-content/themes/cemAmbiente/img/logo_50.png'; // Modifica con il percorso del tuo logo
+    // const logoSrc = 'https://avatars.githubusercontent.com/u/40484128?v=4';
+    const logoAlt = 'Logo PAT';
 
     // Definisci gli elementi della navbar
     const navItems = [
-        { type: 'button', title: 'Bottone Esempio', onclick: function() { alert('Bottone cliccato!'); } },
-        { type: 'link', title: 'Link Esempio', href: 'https://www.google.com' },
-        { type: 'separator' },
+        { type: 'link', title: 'Bookmarklets', href: 'https://github.com/pBielli/bookmarklet' },
         {
-            type: 'dropdown', title: 'Lista di Cose', elements: [
-                { type: 'button', title: 'Bottone nel Dropdown', onclick: function() { alert('Bottone nel dropdown!'); } },
-                { type: 'link', title: 'Link nel Dropdown', href: 'https://www.google.com' },
+            type: 'dropdown', title: 'Comandi AzzurroZCS', elements: [
+                { type: 'link', title: 'AzzurroZCS', href: 'https://zcsazzurrosystemsweb.com/customer/e438305f-c279/overview' },
                 { type: 'separator' },
-                {
-                    type: 'dropdown', title: 'Sotto Dropdown', elements: [
-                        { type: 'button', title: 'Bottone nel Sotto Dropdown', onclick: function() { alert('Bottone nel sotto dropdown!'); } }
-                    ]
-                }
+                { type: 'button', title: 'Download Excel', onclick: function() { run_();alert('Download eseguito!'); } },
             ]
         }
     ];
@@ -162,6 +164,3 @@ function initNavbar() {
     // Aggiungi la navbar al body
     document.body.prepend(navbar);
 }
-
-// Inizializza la navbar quando la pagina è pronta
-document.addEventListener('DOMContentLoaded', initNavbar);
