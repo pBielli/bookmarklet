@@ -21,6 +21,6 @@ function includeResource(src, type = 'script') {
     }
 }
 includeResource("https://pbielli.github.io/bookmarklet/Bootstrap/navbar.js","script");
-includeScript("https://pbielli.github.io/bookmarklet/AzzurroZCS/main.js");
+includeResource("https://pbielli.github.io/bookmarklet/AzzurroZCS/main.js","script");
 includeResource("https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js","script");
 includeResource("https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css","css");
