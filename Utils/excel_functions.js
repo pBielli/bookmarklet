@@ -1,12 +1,10 @@
-function includeScript(src){
-const script = document.createElement('script');
-script.src = src;
-document.head.appendChild(script);
+//include utils
+var utils="https://pbielli.github.io/bookmarklet/Utils/utils.js";
+!document.querySelector(`script[src="${utils}"]`) && document.head.appendChild(Object.assign(document.createElement('script'), { src: utils }));
 
-}
 
 // Includi la libreria XLSX tramite CDN
-includeScript("https://unpkg.com/exceljs/dist/exceljs.min.js");
+includeResource("https://unpkg.com/exceljs/dist/exceljs.min.js","script");
 
 // Funzione per convertire un oggetto in Excel e scaricarlo
 async function convertObjectToExcel(obj, sheetName) {

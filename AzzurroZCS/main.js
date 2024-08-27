@@ -1,4 +1,23 @@
-async function run_() {
+
+//funzione per includere le risorse e inserire la navbar
+function startup(){
+    // Includi la libreria XLSX tramite CDN -
+    const srv="https://pbielli.github.io/bookmarklet";
+
+    includeResource(srv+"/AzzurroZCS/EnergyDataProcessor.js","script");
+    includeResource(srv+"/Utils/excel_functions.js","script");
+    includeResource(srv+"/Utils/image_functions.js","script");
+    includeResource(srv+"/Utils/utils.js","script");
+    includeResource(srv+"/Bootstrap/navbar.js","script");
+
+    includeResource("https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js","script");
+    includeResource("https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css","css");
+
+    setTimeout(()=>{initNavbar();alert(1);},2000);
+    alert("Caricamento in corso...");
+}
+// Funzione per estrarre i dati dalla pagna e salvarli in un file excel
+async function downloadData() {
     var energyDataProcessor, energyData;
     var fileName=`EnergyData - ${document.getElementById("mat-input-6").value}`;
     var canvas=document.querySelector("lib-monthly-yearly-energy-overview #energy-overview canvas");
@@ -23,30 +42,7 @@ async function run_() {
     downloadExcel(updatedExcelBuffer, fileName);
     console.log("Fine.");
 }
-
-function includeResource(src, type = 'script') {
-    const param = "v";
-    const flag=src.indexOf('?')> 0;
-    const timestamp = new Date().getTime();
-    const separator = (flag) ? '&' : '?';
-    const versionParam = param + ((flag && src.indexOf(param,src.indexOf('?')) > 0) ? '_extra' : '') + '=' + timestamp;
-
-    if (type === 'script') {
-        const script = document.createElement('script');
-        script.src = src + separator + versionParam;
-        console.log(`includeScript -> ${script.src}`);
-        document.head.appendChild(script);
-    } else if (type === 'css') {
-        const link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.href = src + separator + versionParam;
-        console.log(`includeCSS -> ${link.href}`);
-        document.head.appendChild(link);
-    } else {
-        console.error('Unsupported resource type:', type);
-    }
-}
-// Funzione per inizializzare la navbar
+// Funzione per inserire la navbar
 function initNavbar() {
     // Configurazioni
     const logoSrc = 'https://www.cemambiente.it/wp-content/themes/cemAmbiente/img/logo_50.png'; // Modifica con il percorso del tuo logo
@@ -60,7 +56,7 @@ function initNavbar() {
             type: 'dropdown', title: 'Comandi AzzurroZCS', elements: [
                 { type: 'link', title: 'AzzurroZCS', href: 'https://zcsazzurrosystemsweb.com/customer/e438305f-c279/overview' },
                 { type: 'separator' },
-                { type: 'button', title: 'Download Excel', onclick: function() { run_();alert('Download eseguito!'); } },
+                { type: 'button', title: 'Download Excel', onclick: function() { downloadData();alert('Download eseguito!'); } },
             ]
         }
     ];
@@ -68,16 +64,12 @@ function initNavbar() {
     insertNavbar(logoSrc,logoAlt,navItems);
 }
 
-// Includi la libreria XLSX tramite CDN -
-const srv="https://pbielli.github.io/bookmarklet";
+//LO SCRIPT
+//include il file utils - contiene includeResource()
+var utils="https://pbielli.github.io/bookmarklet/Utils/utils.js";
+!document.querySelector(`script[src="${utils}"]`) && document.head.appendChild(Object.assign(document.createElement('script'), { src: utils ,id:"bookmarklet_utils"}));
 
-includeResource(srv+"/AzzurroZCS/EnergyDataProcessor.js","script");
-includeResource(srv+"/Utils/excel_functions.js","script");
-includeResource(srv+"/Utils/image_functions.js","script");
-includeResource(srv+"/Utils/utils.js","script");
-includeResource(srv+"/Bootstrap/navbar.js","script");
-
-includeResource("https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js","script");
-includeResource("https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css","css");
-
-setTimeout(()=>{initNavbar(console);alert(1)},2000);
+//controlla che utils.js sia stato caricato ed include le risorse necessarie
+document.querySelector(`script[src="${utils}"]`).addEventListener("load", (event) => {
+    startup()
+  });
