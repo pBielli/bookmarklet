@@ -1,13 +1,14 @@
+function loadScript(src) {
+    const fullSrc = generateVersionedUrl(src);  // Chiamata alla funzione per aggiungere la versione
+    return new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = fullSrc;
+        script.onload = resolve;
+        script.onerror = reject;
+        document.head.appendChild(script);
+    });
+}
 
-
-
-const loadScript = url => new Promise((resolve, reject) => {
-    const script = document.createElement('script');
-    script.src = url;
-    script.onload = resolve;
-    script.onerror = reject;
-    document.head.appendChild(script);
-});
 function run() {
     const extractor = new TableDataExtractor();
     extractor.extractAndDisplay();
