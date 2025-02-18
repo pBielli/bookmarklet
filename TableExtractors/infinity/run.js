@@ -5,5 +5,3 @@ loadScript("https://pbielli.github.io/bookmarklet/TableExtractors/infinity/dataE
 const extractor = new TableDataExtractor();
 extractor.extractAndDisplay();
 extractor.toCSV()
-
-javascript:(function(){var s=document.createElement('script');s.src="main.js";document.head.appendChild(s)})();
