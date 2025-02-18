@@ -37,3 +37,13 @@ function includeResource(src, type = 'script') {
         console.error('Unsupported resource type:', type);
     }
 }
+function downloadFile(content, fileName = "download", fileType = "text/plain") {
+    const blob = new Blob([content], { type: fileType });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
