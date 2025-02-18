@@ -1,42 +1,62 @@
-function includeResource(src, type = 'script') {
-    const param = "v";
-    const flag = src.indexOf('?') > 0;
-    const timestamp = new Date().getTime();
-    const separator = (flag) ? '&' : '?';
-    const versionParam = param + ((flag && src.indexOf(param, src.indexOf('?')) > 0) ? '_extra' : '') + '=' + timestamp;
+// Funzione per generare l'URL con il parametro di versione
+function generateVersionedUrl(src) {
+    const versionParam = `v=${new Date().getTime()}`;
+    const separator = src.includes('?') ? '&' : '?';
+    return `${src}${separator}${versionParam}`;
+}
 
-    // Funzione per verificare se la risorsa è già stata inclusa
-    function isResourceIncluded(src, type) {
-        if (type === 'script') {
-            return Array.from(document.getElementsByTagName('script')).some(script => script.src.includes(src));
-        } else if (type === 'css') {
-            return Array.from(document.getElementsByTagName('link')).some(link => link.rel === 'stylesheet' && link.href.includes(src));
-        }
-        return false;
-    }
-
-    // Controlla se la risorsa è già inclusa
-    if (isResourceIncluded(src, type)) {
-        console.log(`Resource already included: ${src}`);
-        return;  // Se la risorsa è già inclusa, esci dalla funzione
-    }
-
-    // Aggiungi la risorsa solo se non è già inclusa
-    if (type === 'script') {
+// Funzione per caricare uno script
+function loadScript(src) {
+    const fullSrc = generateVersionedUrl(src);  // Chiamata alla funzione per aggiungere la versione
+    return new Promise((resolve, reject) => {
         const script = document.createElement('script');
-        script.src = src + separator + versionParam;
-        console.log(`includeScript -> ${script.src}`);
+        script.src = fullSrc;
+        script.onload = resolve;
+        script.onerror = reject;
         document.head.appendChild(script);
-    } else if (type === 'css') {
+    });
+}
+
+// Funzione per caricare un CSS
+function loadCSS(src) {
+    const fullSrc = generateVersionedUrl(src);  // Chiamata alla funzione per aggiungere la versione
+    return new Promise((resolve, reject) => {
         const link = document.createElement('link');
         link.rel = 'stylesheet';
-        link.href = src + separator + versionParam;
-        console.log(`includeCSS -> ${link.href}`);
+        link.href = fullSrc;
+        link.onload = resolve;
+        link.onerror = reject;
         document.head.appendChild(link);
-    } else {
-        console.error('Unsupported resource type:', type);
-    }
+    });
 }
+
+// Funzione per verificare se la risorsa è già stata inclusa
+function isResourceIncluded(src, type) {
+    const elements = type === 'script'
+        ? document.getElementsByTagName('script')
+        : document.getElementsByTagName('link');
+
+    return Array.from(elements).some(element => 
+        type === 'script' ? element.src.includes(src) : element.href.includes(src)
+    );
+}
+
+// Funzione principale per includere la risorsa
+function includeResource(src, type = 'script') {
+    // Verifica se la risorsa è già inclusa
+    if (isResourceIncluded(src, type)) {
+        console.log(`Resource already included: ${src}`);
+        return Promise.resolve();
+    }
+
+    // Carica la risorsa in base al tipo
+    const loadResource = type === 'script' ? loadScript(src) : loadCSS(src);
+
+    return loadResource
+        .then(() => console.log(`${type.toUpperCase()} loaded successfully: ${src}`))
+        .catch((error) => console.error(`Error loading ${type}: ${src}`, error));
+}
+
 function downloadFile(content, fileName = "download", fileType = "text/plain") {
     const blob = new Blob([content], { type: fileType });
     const link = document.createElement('a');
