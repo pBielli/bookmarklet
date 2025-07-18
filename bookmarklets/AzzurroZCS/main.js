@@ -20,7 +20,7 @@ async function downloadData() {
     var energyDataProcessor, energyData;
     var fileName=`EnergyData - ${document.getElementById("mat-input-6").value}`;
     var canvas=document.querySelector("lib-monthly-yearly-energy-overview #energy-overview canvas");
-   
+
 // Esecuzione del codice
     energyDataProcessor = new EnergyDataProcessor();
     energyData = energyDataProcessor.processEnergyData();

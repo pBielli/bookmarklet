@@ -1,0 +1,5 @@
+{
+  "nome": "AzzurroZCS - Energia",
+  "descrizione": "Elaborazione dei dati energetici e strumenti per la piattaforma ZCS",
+  "sitiCompatibili": ["*.zcsazzurro.com", "zcs.*", "*"]
+}
