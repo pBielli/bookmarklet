@@ -3,11 +3,11 @@ function startup(){
     // Includi la libreria XLSX tramite CDN -
     const srv="https://pbielli.github.io/bookmarklet";
 
-    includeResource(srv+"/AzzurroZCS/EnergyDataProcessor.js","script");
-    includeResource(srv+"/Utils/excel_functions.js","script");
-    includeResource(srv+"/Utils/image_functions.js","script");
-    includeResource(srv+"/Utils/utils.js","script");
-    includeResource(srv+"/Bootstrap/navbar.js","script");
+    includeResource(srv+"/bookmarklets/AzzurroZCS/EnergyDataProcessor.js","script");
+    includeResource(srv+"/includes/Utils/excel_functions.js","script");
+    includeResource(srv+"/includes/Utils/image_functions.js","script");
+    includeResource(srv+"/includes/Utils/utils.js","script");
+    includeResource(srv+"/includes/Bootstrap/navbar.js","script");
 
     includeResource("https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js","script");
     includeResource("https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css","css");

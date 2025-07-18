@@ -14,4 +14,4 @@ function fetchGitHubFile(url) {
       });
   }
   
-  fetchGitHubFile('https://raw.githubusercontent.com/pBielli/bookmarklet/main/core/logo.txt');
+  fetchGitHubFile('https://raw.githubusercontent.com/pBielli/bookmarklet/includes/logo.txt');

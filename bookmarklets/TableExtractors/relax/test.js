@@ -4,4 +4,4 @@ js.type = "text/javascript";
 js.src = URLbase+"Utils/utils.js";
 document.body.appendChild(js);
 
-includeResource(URLbase+"TableExtractors/relax/extractor_cl.js", "script");
+includeResource(URLbase+"/bookmarklets/TableExtractors/relax/extractor_cl.js", "script");
