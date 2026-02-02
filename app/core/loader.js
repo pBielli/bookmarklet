@@ -6,13 +6,14 @@
 const ResourceLoader = {
     loadedResources: new Set(),
     config: null,
+    baseUrl : '/bookmarklets/app',
 
     /**
      * Inizializza il loader con la configurazione
      */
     async init() {
         try {
-            const response = await fetch('config.json');
+            const response = await fetch(`${this.baseUrl}/config.json`);
             this.config = await response.json();
         } catch (error) {
             console.warn('⚠️ Config non disponibile per ResourceLoader');

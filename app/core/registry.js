@@ -43,7 +43,7 @@ const BookmarkletRegistry = {
      */
     async loadConfig() {
         try {
-            const response = await fetch('config.json');
+            const response = await fetch(`${this.baseUrl}\config.json`);
             this.config = await response.json();
             this.baseUrl = this.config.project.baseUrl;
         } catch (error) {
@@ -57,7 +57,7 @@ const BookmarkletRegistry = {
     },
     async loadBookmarkletList() {
         try {
-            const response = await fetch('bookmarklets.json');
+            const response = await fetch(`${this.baseUrl}\bookmarklets.json`);
             const bookmarklets_json = await response.json();
             // Usa direttamente l'attributo `bookmarklets` dal json
             this.bookmarklets = bookmarklets_json.bookmarklets || [];
@@ -96,7 +96,7 @@ const BookmarkletRegistry = {
             };
             if (!folder) continue;
             try {
-                const infoPath = `bookmarklets/${folder}/info.json`;
+                const infoPath = `${this.baseUrl}/bookmarklets/${folder}/info.json`;
                 const response = await fetch(infoPath);
 
                 if (response.ok) {
