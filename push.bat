@@ -1,0 +1,1 @@
+cd "C:\CEM\SVILUPPO\Pat-git\bookmarklet" && git add . && git commit  -m "nuova versione" && git push
