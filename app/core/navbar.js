@@ -35,6 +35,7 @@
       // Carica core
       await loadScript("/bookmarklet/app/core/loader.js");
       await loadScript("/bookmarklet/app/core/registry.js");
+      await loadScript("/bookmarklet/app/includes/ui/navbar.js");
       // Se questo è navbar.js stesso, non serve ricaricare se stesso
 
       // Inizializzazione
