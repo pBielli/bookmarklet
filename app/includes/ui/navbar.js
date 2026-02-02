@@ -10,7 +10,7 @@
     
     // Configurazione
     const CONFIG = {
-        baseUrl: 'https://pbielli.github.io/bookmarklet',
+        baseUrl: 'https://pbielli.github.io/bookmarklet/app',
         navbarId: 'bookmarklet-navbar-injected',
         zIndex: 999999,
         animationDuration: 300

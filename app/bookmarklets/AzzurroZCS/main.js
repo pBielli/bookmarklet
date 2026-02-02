@@ -1,7 +1,7 @@
 //funzione per includere le risorse e inserire la navbar
 function startup(){
     // Includi la libreria XLSX tramite CDN -
-    const srv="https://pbielli.github.io/bookmarklet";
+    const srv="https://pbielli.github.io/bookmarklet/app";
 
     includeResource(srv+"/bookmarklets/AzzurroZCS/EnergyDataProcessor.js","script");
     includeResource(srv+"/includes/Utils/excel_functions.js","script");
@@ -60,7 +60,7 @@ function initNavbar() {
 
 //LO SCRIPT
 //include il file utils - contiene includeResource()
-var utils="https://pbielli.github.io/bookmarklet/Utils/utils.js";
+var utils="https://pbielli.github.io/bookmarklet/app/Utils/utils.js";
 !document.querySelector(`script[src="${utils}"]`) && document.head.appendChild(Object.assign(document.createElement('script'), { src: utils ,id:"bookmarklet_utils"}));
 
 //controlla che utils.js sia stato caricato ed include le risorse necessarie
