@@ -33,8 +33,8 @@
       await loadScript("https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js");
 
       // Carica core
-      await loadScript("core/loader.js");
-      await loadScript("core/registry.js");
+      await loadScript("/bookmarklet/app/core/loader.js");
+      await loadScript("/bookmarklet/app/core/registry.js");
       // Se questo è navbar.js stesso, non serve ricaricare se stesso
 
       // Inizializzazione
