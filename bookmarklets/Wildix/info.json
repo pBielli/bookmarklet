@@ -1,5 +1,30 @@
 {
-  "nome": "Wildix - On/Off",
-  "descrizione": "Abilita/disabilita rapidamente funzionalità su Wildix",
-  "sitiCompatibili": ["*.wildix.com", "wildix.*"]
+    "name": "Wildix Tools",
+    "version": "1.0.0",
+    "description": "Strumenti per la gestione e integrazione con piattaforma Wildix",
+    "category": "Communication",
+    "icon": "📞",
+    "author": "pBielli",
+    "dependencies": {
+        "bootstrap": true,
+        "exceljs": false,
+        "customLibs": []
+    },
+    "permissions": {
+        "requiresLogin": true,
+        "domains": ["*.wildix.com", "wildix.com"]
+    },
+    "files": {
+        "main": "main.js",
+        "styles": null,
+        "assets": []
+    },
+    "modules": [],
+    "configuration": {
+        "configurable": true,
+        "settings": {
+            "autoConnect": true,
+            "notificationEnabled": true
+        }
+    }
 }

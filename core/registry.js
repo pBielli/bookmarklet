@@ -8,6 +8,7 @@ const BookmarkletRegistry = {
     bookmarklets: [],
     config: null,
     baseUrl: '',
+    bookmarkletFolders: [],
 
     /**
      * Inizializza il registry
@@ -52,20 +53,35 @@ const BookmarkletRegistry = {
             };
         }
     },
+    async loadBookmarkletList() {
+        try {
+            const response = await fetch('bookmarklets_list.json');
+            this.bookmarkletFolders = await response.json();
+            this.baseUrl = this.config.project.baseUrl;
+        } catch (error) {
+            console.error('⚠️ Impossibile caricare bookmarklets.json, uso valori di default');
+            this.bookmarkletFolders = [
+            'Amazon',
+            'Azzurro-zcs',
+            'wildix'
+            // Aggiungi qui nuove cartelle bookmarklet
+        ];
+        }
+    },
 
     /**
      * Scopre automaticamente tutti i bookmarklet
      * Cerca tutte le cartelle in /bookmarklets che contengono info.json
      */
     async discoverBookmarklets() {
-        const bookmarkletFolders = [
-            'amazon',
-            'azzurro-zcs',
-            'wildix'
-            // Aggiungi qui nuove cartelle bookmarklet
-        ];
+        // const bookmarkletFolders = [
+        //     'amazon',
+        //     'azzurro-zcs',
+        //     'wildix'
+        //     // Aggiungi qui nuove cartelle bookmarklet
+        // ];
 
-        for (const folder of bookmarkletFolders) {
+        for (const folder of this.bookmarkletFolders) {
             try {
                 const infoPath = `bookmarklets/${folder}/info.json`;
                 const response = await fetch(infoPath);
