@@ -7,7 +7,7 @@
 const BookmarkletRegistry = {
     bookmarklets: [],
     config: null,
-    baseUrl: '',
+    baseUrl: '/bookmarklets/app',
 
     /**
      * Inizializza il registry
