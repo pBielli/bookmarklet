@@ -1,0 +1,21 @@
+{
+  "bookmarklets": [
+    {
+      "id": "Amazon",
+      "enabled": true,
+      "priority": 1
+    }
+,
+    {
+      "id": "AzzurroZCS",
+      "enabled": true,
+      "priority": 2
+    }
+,
+    {
+      "id": "Wildix",
+      "enabled": true,
+      "priority": 3
+    }
+  ]
+}

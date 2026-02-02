@@ -58,8 +58,9 @@ const BookmarkletRegistry = {
     },
     async loadBookmarkletList() {
         try {
-            const response = await fetch('bookmarklets_list.json');
-            this.bookmarkletFolders = await response.json();
+            const response = await fetch('bookmarklets.json');
+            let bookmarklets_json = await response.json();
+            this.bookmarkletFolders = bookmarklets_json.bookmarklets.map(b => b.id);
             this.baseUrl = this.config.project.baseUrl;
         } catch (error) {
             console.error('⚠️ Impossibile caricare bookmarklets.json, uso valori di default',error);
