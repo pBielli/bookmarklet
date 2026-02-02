@@ -17,6 +17,9 @@ const BookmarkletRegistry = {
         try {
             // Carica configurazione
             await this.loadConfig();
+
+            // Carica lista cartelle bookmarklet
+            await this.loadBookmarkletList();
             
             // Scopri tutti i bookmarklet
             await this.discoverBookmarklets();
