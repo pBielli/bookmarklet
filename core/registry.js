@@ -90,10 +90,10 @@ const BookmarkletRegistry = {
             const entry = this.bookmarklets[i] || {};
             const folder = entry.id;
             const defaultEntry = {
-                    id: folder,
-                    path: `bookmarklets/${folder}`,
-                    ...entry
-                };
+                id: folder,
+                path: `bookmarklets/${folder}`,
+                ...entry
+            };
             if (!folder) continue;
             try {
                 const infoPath = `bookmarklets/${folder}/info.json`;
@@ -103,30 +103,24 @@ const BookmarkletRegistry = {
                     const info = await response.json();
 
                     // Sostituisci/integra l'entry esistente con i dati di info.json
-                    this.bookmarklets[i] = {...defaultEntry};
+                    this.bookmarklets[i] = { ...defaultEntry };
                 } else {
                     // Mantieni l'entry originale ma assicura il campo path
-                    this.bookmarklets[i] = {...defaultEntry};
+                    this.bookmarklets[i] = { ...defaultEntry };
                 }
             } catch (error) {
                 console.warn(`⚠️ Impossibile caricare ${folder}:`, error);
-                this.bookmarklets[i] = {...defaultEntry};
+                this.bookmarklets[i] = { ...defaultEntry };
             }
         }
         // Ordina per categoria e nome
         this.bookmarklets.sort((a, b) => {
 
-            if (a.category !== b.category) {
-                if (a.category != null && a.category.localeCompare)
-                    return a.category.localeCompare(b.category);
-                else if (b.category != null && b.category.localeCompare)
-                    return b.category.localeCompare(a.category);
-//localcompare di solito ritorna -1 se a < b, 1 se a > b, 0 se uguali, quindi per non farlo aggiungere ritorniamo 0
-                else
-                    return -1;
-            }
-            return -1
-            
+            const categoryA = a.category || ""; // Se null/undefined, metti stringa vuota
+            const categoryB = b.category || "";
+
+            return categoryA.localeCompare(categoryB);
+
         });
     },
 
