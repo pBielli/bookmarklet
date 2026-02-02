@@ -1,0 +1,5 @@
+{
+  "nome": "Wildix - On/Off",
+  "descrizione": "Abilita/disabilita rapidamente funzionalità su Wildix",
+  "sitiCompatibili": ["*.wildix.com", "wildix.*"]
+}

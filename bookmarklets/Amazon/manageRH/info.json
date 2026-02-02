@@ -1,0 +1,5 @@
+{
+  "nome": "Gestione RH Amazon",
+  "descrizione": "Strumenti per selezionare, usare e gestire risorse umane su Amazon",
+  "sitiCompatibili": ["*.amazon.com", "amazon.*"]
+}
