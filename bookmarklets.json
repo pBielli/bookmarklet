@@ -1,0 +1,14 @@
+{
+  bookmarklets [
+    {
+      id amazon,
+      enabled true,
+      priority 1
+    },
+    {
+      id azzurro-zcs,
+      enabled true,
+      priority 2
+    }
+  ]
+}
