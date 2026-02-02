@@ -121,10 +121,12 @@ const BookmarkletRegistry = {
                     return a.category.localeCompare(b.category);
                 else if (b.category != null && b.category.localeCompare)
                     return b.category.localeCompare(a.category);
+//localcompare di solito ritorna -1 se a < b, 1 se a > b, 0 se uguali, quindi per non farlo aggiungere ritorniamo 0
                 else
-                    return null
+                    return 0;
             }
-            return a.name.localeCompare(b.name);
+            return 0
+            
         });
     },
 
