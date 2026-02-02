@@ -4,11 +4,11 @@
     "version": "2.0.0",
     "author": "pBielli",
     "repository": "https://github.com/pBielli/bookmarklet",
-    "baseUrl": "https://pbielli.github.io/bookmarklet"
+    "baseUrl": "https://pbielli.github.io/bookmarklet/app"
   },
   "git": {
     "enabled": true,
-    "apiUrl": "https://api.github.com/repos/pBielli/bookmarklet",
+    "apiUrl": "https://api.github.com/repos/pBielli/bookmarklet/app",
     "checkUpdates": true
   },
   "ui": {
