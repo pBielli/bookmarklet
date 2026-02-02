@@ -1,9 +1,9 @@
 {
   "version": "1.0.0",
   "name": "AzzurroZCS - Energia",
-  "description": "Elaborazione dei dati energetici e strumenti per la piattaforma ZCS",
-  "category": "Management",
-  "icon": "📦",
+  "description": "Estrazione dati da pagina Azzurro ZCS",
+  "category": "Management (Soleti)",
+  "icon": "🔌",
   "author": "pBielli",
   "dependencies": {
     "bootstrap": true,
