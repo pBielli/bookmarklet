@@ -107,8 +107,18 @@ const BookmarkletRegistry = {
         console.log(this.bookmarklets);
         // Ordina per categoria e nome
         this.bookmarklets.sort((a, b) => {
+            
             if (a.category !== b.category) {
-                return a.category.localeCompare(b.category);
+                console.log("--")
+                console.log("a.category:",a.category)
+                console.log("b.category:",b.category)
+                let res=null;
+                if(a.category != null && a.category.localeCompare)
+                res= a.category.localeCompare(b.category);
+                else if(b.category != null && b.category.localeCompare)
+                    res= b.category.localeCompare(a.category);
+                console.log("res:",res)
+                return res
             }
             return a.name.localeCompare(b.name);
         });
