@@ -1,0 +1,135 @@
+/**
+ * Stili globali per Bookmarklet Collection
+ */
+
+/* === VARIABILI === */
+:root {
+    --primary-color: #0d6efd;
+    --secondary-color: #6c757d;
+    --success-color: #198754;
+    --danger-color: #dc3545;
+    --warning-color: #ffc107;
+    --info-color: #0dcaf0;
+    --dark-color: #212529;
+    --light-color: #f8f9fa;
+}
+
+/* === NAVBAR === */
+#bookmarklet-navbar {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#navbar-logo {
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+#bookmarklet-navbar .navbar-text {
+    font-family: 'Courier New', monospace;
+}
+
+/* === CARDS === */
+.card {
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important;
+}
+
+.card-title {
+    color: var(--dark-color);
+    font-weight: 600;
+}
+
+/* === CODE BLOCKS === */
+pre {
+    background-color: var(--light-color);
+    border: 1px solid #dee2e6;
+    border-radius: 0.375rem;
+    overflow-x: auto;
+}
+
+pre code {
+    color: #d63384;
+    font-family: 'Courier New', monospace;
+    font-size: 0.875rem;
+}
+
+/* === BUTTONS === */
+.btn {
+    transition: all 0.2s;
+}
+
+.btn:active {
+    transform: scale(0.95);
+}
+
+/* === DROPDOWN === */
+.dropdown-menu {
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.dropdown-item {
+    transition: background-color 0.2s;
+}
+
+.dropdown-item:hover {
+    background-color: var(--light-color);
+}
+
+/* === UTILITIES === */
+.text-monospace {
+    font-family: 'Courier New', monospace;
+}
+
+.shadow-soft {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+    #navbar-logo {
+        font-size: 1rem;
+    }
+    
+    .navbar-text {
+        font-size: 0.75rem;
+    }
+}
+
+/* === ANIMATIONS === */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.3s ease-in;
+}
+
+/* === SCROLLBAR PERSONALIZZATA === */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--light-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--secondary-color);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--dark-color);
+}

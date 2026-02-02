@@ -1,5 +1,0 @@
-{
-  "nome": "Estrattore Tabelle - Relax",
-  "descrizione": "Estrazione dati da tabelle presenti su Relax gestionale",
-  "sitiCompatibili": ["*.relaxspa.it", "relax.*"]
-}

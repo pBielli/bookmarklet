@@ -1,5 +1,0 @@
-{
-  "nome": "Estrattore Tabelle - Infinity",
-  "descrizione": "Estrae e processa dati tabellari dalla piattaforma Infinity",
-  "sitiCompatibili": ["infinity.*", "*.teamsystem.com"]
-}

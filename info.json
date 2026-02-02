@@ -1,0 +1,26 @@
+{
+  "name": "Nome Bookmarklet",
+  "version": "1.0.0",
+  "description": "Descrizione breve del bookmarklet",
+  "category": "Utilities",
+  "icon": "📌",
+  "author": "pBielli",
+  "dependencies": {
+    "bootstrap": true,
+    "exceljs": false,
+    "customLibs": []
+  },
+  "permissions": {
+    "requiresLogin": false,
+    "domains": ["*"]
+  },
+  "files": {
+    "main": "main.js",
+    "styles": null,
+    "assets": []
+  },
+  "configuration": {
+    "configurable": false,
+    "settings": {}
+  }
+}
