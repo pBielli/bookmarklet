@@ -1,320 +1,412 @@
-# 📚 Bookmarklet Collection
+# 🔖 Bookmarklet Collection
 
-Una collezione modulare e organizzata di bookmarklet per manipolare e interagire con pagine web direttamente dal browser.
+Una collezione moderna e modulare di bookmarklet per migliorare la tua esperienza di navigazione web.
 
-![Version](https://img.shields.io/badge/version-2.0.0-blue)
-![License](https://img.shields.io/badge/license-MIT-green)
-![Bookmarklets](https://img.shields.io/badge/bookmarklets-3+-orange)
-
----
-
-## 🌟 Caratteristiche
-
-- **🎯 Entry Point Unificato**: Interfaccia web con navbar dinamica
-- **📦 Auto-Discovery**: I bookmarklet vengono rilevati automaticamente
-- **🔧 Sistema Modulare**: Aggiungi nuovi bookmarklet in 2 minuti
-- **⚡ Caricamento Intelligente**: Gestione automatica delle dipendenze
-- **🎨 UI Professionale**: Interfaccia Bootstrap responsive
-- **📊 Info da GitHub**: Versione e ultimo aggiornamento automatici
-- **🛠️ Template Pronto**: Struttura standardizzata per nuovi bookmarklet
+**Versione:** 2.0.0  
+**Autore:** pBielli  
+**Repository:** [https://github.com/pBielli/bookmarklet](https://github.com/pBielli/bookmarklet)
 
 ---
 
-## 🚀 Demo Live
+## 📋 Indice
 
-**👉 [Apri la Collection](https://pbielli.github.io/bookmarklet/)**
-
----
-
-## 📋 Bookmarklet Disponibili
-
-### ⚡ Business Tools
-- **Azzurro ZCS Suite** - Suite completa per gestione dati e RH
-  - Gestione Risorse Umane
-  - Energy Data Processor
-
-### 📦 E-Commerce
-- **Amazon Tools** - Strumenti per Amazon
-
-### 📞 Communication
-- **Wildix On/Off** - Toggle rapido stato Wildix
+- [Caratteristiche](#-caratteristiche)
+- [Demo Live](#-demo-live)
+- [Installazione Rapida](#-installazione-rapida)
+- [Come Usare la Navbar](#-come-usare-la-navbar)
+- [Come Aggiungere un Bookmarklet](#-come-aggiungere-un-bookmarklet)
+- [Bookmarklet Disponibili](#-bookmarklet-disponibili)
+- [Struttura del Progetto](#-struttura-del-progetto)
+- [Sviluppo](#-sviluppo)
+- [Licenza](#-licenza)
 
 ---
 
-## 🎯 Quick Start
+## ✨ Caratteristiche
 
-### 1️⃣ Visita il Sito
-Vai su [https://pbielli.github.io/bookmarklet/](https://pbielli.github.io/bookmarklet/)
-
-### 2️⃣ Scegli un Bookmarklet
-Sfoglia la griglia o usa il menu a tendina nella navbar
-
-### 3️⃣ Copia il Codice
-Clicca su "Dettagli & Codice" e copia il codice generato
-
-### 4️⃣ Crea il Segnalibro
-1. Crea un nuovo segnalibro nel browser
-2. Incolla il codice come URL
-3. Clicca quando sei sulla pagina desiderata
+- 🎯 **Modular Architecture**: Ogni bookmarklet è auto-contenuto e indipendente
+- 🔄 **Auto-Update**: Sistema di aggiornamento automatico via GitHub
+- 🎨 **Modern UI**: Interfaccia Bootstrap 5 responsive
+- 📦 **Gestione Dipendenze**: Caricamento automatico di Bootstrap, ExcelJS e altre librerie
+- 🌐 **Cross-Browser**: Compatibile con Chrome, Firefox, Edge, Safari
+- 🚀 **Navbar Iniettabile**: Barra di navigazione che può essere caricata su qualsiasi pagina web
+- 📱 **Responsive**: Perfettamente utilizzabile su desktop e mobile
 
 ---
 
-## 🛠️ Per Sviluppatori
+## 🌐 Demo Live
 
-### Struttura del Progetto
+Visita la pagina del progetto: [https://pbielli.github.io/bookmarklet](https://pbielli.github.io/bookmarklet)
 
-```
-bookmarklet/
-├── index.html                  # Entry point principale
-├── config.json                 # Configurazione globale
-├── README.md
-├── MIGRATION_GUIDE.md          # Guida migrazione
-│
-├── core/                       # Sistema core
-│   ├── loader.js              # Caricamento risorse
-│   ├── registry.js            # Registro bookmarklet
-│   └── core.js                # Logica principale
-│
-├── includes/                   # Risorse condivise
-│   ├── ui/
-│   │   ├── navbar.js          # Componente navbar
-│   │   └── styles.css         # Stili globali
-│   ├── libs/                  # Librerie esterne
-│   └── utils/                 # Utilities comuni
-│       ├── utils.js
-│       ├── excel_functions.js
-│       └── image_functions.js
-│
-├── bookmarklets/              # Bookmarklet
-│   ├── _template/             # Template per nuovi
-│   ├── amazon/
-│   ├── azzurro-zcs/
-│   └── wildix/
-│
-└── assets/                    # Risorse statiche
+---
+
+## 🚀 Installazione Rapida
+
+### Metodo 1: Navbar Universale (Raccomandato)
+
+La navbar ti permette di accedere a tutti i bookmarklet da qualsiasi pagina web con un solo click!
+
+**Passo 1:** Crea un nuovo segnalibro nel tuo browser  
+**Passo 2:** Dai un nome al segnalibro (es. "🔖 My Bookmarklets")  
+**Passo 3:** Incolla questo codice come URL del segnalibro:
+
+```javascript
+javascript:(function(){var s=document.createElement('script');s.src='https://pbielli.github.io/bookmarklet/core/navbar.js?v='+new Date().getTime();document.head.appendChild(s);})();
 ```
 
-### Aggiungere un Nuovo Bookmarklet
+**Passo 4:** Salva il segnalibro
 
-#### Metodo Rapido (2 minuti) ⚡
+### Metodo 2: Bookmarklet Singoli
 
-```bash
-# 1. Copia il template
-cp -r bookmarklets/_template bookmarklets/mio-bookmarklet
+Per installare un singolo bookmarklet, sostituisci `FOLDER_NAME` con il nome della cartella del bookmarklet desiderato:
 
-# 2. Modifica info.json
-cd bookmarklets/mio-bookmarklet
-nano info.json
+```javascript
+javascript:(function(){var s=document.createElement('script');s.src='https://pbielli.github.io/bookmarklet/bookmarklets/FOLDER_NAME/main.js?v='+new Date().getTime();document.head.appendChild(s);})();
 ```
+
+**Esempio per Azzurro ZCS:**
+```javascript
+javascript:(function(){var s=document.createElement('script');s.src='https://pbielli.github.io/bookmarklet/bookmarklets/azzurro-zcs/main.js?v='+new Date().getTime();document.head.appendChild(s);})();
+```
+
+---
+
+## 🎯 Come Usare la Navbar
+
+### Attivazione della Navbar
+
+1. **Vai su qualsiasi pagina web** dove vuoi usare i bookmarklet
+2. **Clicca sul segnalibro** "🔖 My Bookmarklets" che hai creato
+3. **La navbar apparirà** in cima alla pagina con tutti i bookmarklet disponibili
+
+### Funzionalità della Navbar
+
+- **📌 Menu Bookmarklet**: Clicca su qualsiasi bookmarklet per eseguirlo
+- **🔖 Brand**: Clicca sul logo per aprire la pagina del progetto
+- **✕ Chiudi**: Bottone per rimuovere la navbar dalla pagina
+- **📱 Responsive**: Menu hamburger su dispositivi mobili
+
+### Vantaggi della Navbar
+
+✅ **Un solo segnalibro** invece di decine  
+✅ **Accesso rapido** a tutti i tuoi strumenti  
+✅ **Aggiornamenti automatici** dei bookmarklet  
+✅ **Interfaccia consistente** su tutte le pagine  
+✅ **Facile da rimuovere** quando non serve  
+
+### Esempio di Utilizzo
+
+```
+1. Sei su una pagina Amazon
+2. Clicchi sul segnalibro della navbar
+3. Compare la barra in cima
+4. Clicchi su "📦 Amazon Tools"
+5. Il bookmarklet si esegue sulla pagina
+6. Quando hai finito, clicchi "✕ Chiudi"
+```
+
+---
+
+## 📝 Come Aggiungere un Bookmarklet
+
+### Passo 1: Crea la Struttura
+
+Crea una nuova cartella in `bookmarklets/` con il nome del tuo bookmarklet (usa kebab-case):
+
+```
+bookmarklets/
+└── my-new-bookmarklet/
+    ├── info.json
+    ├── main.js
+    └── README.md (opzionale)
+```
+
+### Passo 2: Configura `info.json`
+
+Crea il file `info.json` con le informazioni del bookmarklet:
 
 ```json
 {
-  "name": "Mio Tool",
-  "description": "Fa cose incredibili",
-  "category": "Utilities",
-  "icon": "🎨"
+    "name": "Nome del Bookmarklet",
+    "version": "1.0.0",
+    "description": "Descrizione breve di cosa fa il bookmarklet",
+    "category": "Categoria (es: Business Tools, E-commerce, Utilities)",
+    "icon": "📌",
+    "author": "TuoNome",
+    "dependencies": {
+        "bootstrap": true,
+        "exceljs": false,
+        "customLibs": []
+    },
+    "permissions": {
+        "requiresLogin": false,
+        "domains": ["*.example.com", "example.com"]
+    },
+    "files": {
+        "main": "main.js",
+        "styles": null,
+        "assets": []
+    },
+    "modules": [],
+    "configuration": {
+        "configurable": false,
+        "settings": {}
+    }
 }
 ```
 
-```bash
-# 3. Scrivi la logica in main.js
-nano main.js
-```
+### Passo 3: Scrivi `main.js`
+
+Il file principale deve essere auto-contenuto e seguire questo pattern:
 
 ```javascript
-(async function() {
-    const CONFIG = {
-        name: 'Mio Tool',
-        baseUrl: 'https://pbielli.github.io/bookmarklet'
-    };
+/**
+ * My New Bookmarklet
+ * Version: 1.0.0
+ * Author: TuoNome
+ */
 
-    // Carica dipendenze
-    async function loadDeps() {
-        // ... (usa il template)
-    }
-
-    async function main() {
-        await loadDeps();
-        console.log('🎯 Il mio bookmarklet!');
-        // La tua logica qui
-    }
-
-    main();
-})();
-```
-
-```bash
-# 4. Aggiungi al registry
-nano core/registry.js
-# Aggiungi 'mio-bookmarklet' all'array bookmarkletFolders
-
-# 5. Commit e push
-git add .
-git commit -m "✨ Aggiungo Mio Tool"
-git push
-```
-
-**Fatto!** Il bookmarklet apparirà automaticamente su GitHub Pages.
-
----
-
-## 📚 Documentazione
-
-### File `info.json`
-
-Ogni bookmarklet deve avere un file `info.json`:
-
-```json
-{
-  "name": "Nome Visualizzato",
-  "version": "1.0.0",
-  "description": "Breve descrizione",
-  "category": "Categoria",
-  "icon": "🎨",
-  "author": "Tuo Nome",
-  "dependencies": {
-    "bootstrap": true,
-    "exceljs": false,
-    "customLibs": []
-  },
-  "permissions": {
-    "requiresLogin": false,
-    "domains": ["*"]
-  }
-}
-```
-
-### File `main.js`
-
-Il file principale deve essere una IIFE che:
-
-1. Carica il `ResourceLoader`
-2. Inizializza le dipendenze necessarie
-3. Esegue la logica del bookmarklet
-
-```javascript
-(async function() {
+(function() {
     'use strict';
     
-    // Config
+    // Verifica se già caricato
+    if (window.MyBookmarkletLoaded) {
+        console.log('Bookmarklet già caricato');
+        return;
+    }
+    window.MyBookmarkletLoaded = true;
+
+    // Configurazione
     const CONFIG = {
-        name: 'Nome',
-        baseUrl: 'https://pbielli.github.io/bookmarklet'
+        baseUrl: 'https://pbielli.github.io/bookmarklet',
+        version: '1.0.0'
     };
 
-    // Carica ResourceLoader
-    async function loadResourceLoader() {
-        if (window.ResourceLoader) return;
-        return new Promise((resolve, reject) => {
-            const script = document.createElement('script');
-            script.src = `${CONFIG.baseUrl}/core/loader.js?v=${Date.now()}`;
-            script.onload = resolve;
-            script.onerror = reject;
-            document.head.appendChild(script);
+    // Carica dipendenze se necessarie
+    function loadDependencies() {
+        return new Promise((resolve) => {
+            // Carica Bootstrap, ExcelJS, ecc.
+            resolve();
         });
     }
 
-    // Carica dipendenze
-    async function loadDependencies() {
-        await loadResourceLoader();
-        await window.ResourceLoader.init();
-        await window.ResourceLoader.loadCommonDependencies();
-    }
-
-    // Main
-    async function main() {
+    // Logica principale
+    async function init() {
+        console.log('Inizializzazione bookmarklet...');
+        
         await loadDependencies();
         
-        // === LA TUA LOGICA QUI ===
-        console.log('Bookmarklet avviato!');
+        // Il tuo codice qui
+        alert('Bookmarklet funzionante!');
     }
 
-    main();
+    // Avvia
+    init().catch(error => {
+        console.error('Errore bookmarklet:', error);
+    });
 })();
 ```
 
-### Utilities Disponibili
+### Passo 4: Registra il Bookmarklet
 
-Il sistema fornisce utilities comuni in `/includes/utils/`:
+Aggiungi il tuo bookmarklet al file `bookmarklets.json`:
 
-#### `utils.js`
-- `loadScript(src)` - Carica script JS
-- `loadCSS(href)` - Carica CSS
-- `includeResource(src, type)` - Include risorsa con check duplicati
-- `downloadFile(content, fileName, fileType)` - Download file
+```json
+{
+    "bookmarklets": [
+        {
+            "id": "my-new-bookmarklet",
+            "enabled": true,
+            "priority": 10
+        }
+    ]
+}
+```
 
-#### `excel_functions.js`
-- `exportToExcel(data, filename)` - Esporta dati in Excel
-- `addImageToExcel(workbook, sheet, imageBase64, cell)` - Aggiunge immagini
-- `downloadExcel(buffer, fileName)` - Download file Excel
+### Passo 5: (Opzionale) Crea README.md
 
-#### `image_functions.js`
-- `canvasImageToBase64(canvas)` - Canvas → Base64
-- `downloadBase64Img(img, fileName)` - Download immagine Base64
-- `downloadCanvasImg(canvas, fileName)` - Download immagine Canvas
+Puoi creare un README.md specifico nella cartella del bookmarklet per documentazione dettagliata.
+
+### Passo 6: Test
+
+1. Apri il progetto localmente o su GitHub Pages
+2. Verifica che il bookmarklet appaia nella navbar
+3. Testa l'esecuzione del bookmarklet
+4. Controlla la console per eventuali errori
+
+### Best Practices
+
+✅ **Usa nomi descrittivi** per ID e nomi file  
+✅ **Gestisci gli errori** con try-catch  
+✅ **Evita conflitti** controllando se già caricato  
+✅ **Usa namespace** per evitare collisioni globali  
+✅ **Commenta il codice** per facilitare manutenzione  
+✅ **Testa su browser diversi** prima di pubblicare  
+✅ **Versiona correttamente** seguendo semantic versioning  
+
+---
+
+## 📦 Bookmarklet Disponibili
+
+### 1. 📦 Amazon Tools
+**Descrizione**: Strumenti per la gestione e analisi dei dati Amazon  
+**Categoria**: E-commerce  
+**Domini**: `*.amazon.com`, `*.amazon.it`
+
+### 2. 📊 Azzurro ZCS Suite
+**Descrizione**: Suite completa per la gestione di dati e risorse umane  
+**Categoria**: Business Tools  
+**Moduli**:
+- Gestione RH
+- Energy Data Processor
+
+**Domini**: `*.azzurrozcs.com`
+
+### 3. 📞 Wildix Tools
+**Descrizione**: Strumenti per integrazione con piattaforma Wildix  
+**Categoria**: Communication  
+**Domini**: `*.wildix.com`
+
+---
+
+## 📁 Struttura del Progetto
+
+```
+bookmarklet/
+├── index.html              # Pagina principale
+├── config.json             # Configurazione globale
+├── bookmarklets.json       # Registro bookmarklet
+├── info.json              # Informazioni progetto
+├── main.js                # Script principale pagina
+├── README.md              # Questo file
+├── MIGRATION_GUIDE.md     # Guida migrazione
+│
+├── core/                  # Core system
+│   ├── loader.js         # Sistema caricamento
+│   ├── registry.js       # Gestione registro
+│   └── navbar.js         # Sistema navbar iniettabile
+│
+├── includes/              # Librerie condivise
+│   └── ui/
+│       └── styles.css    # Stili globali
+│
+└── bookmarklets/          # Collezione bookmarklet
+    ├── amazon/
+    │   ├── info.json
+    │   └── main.js
+    │
+    ├── azzurro-zcs/
+    │   ├── info.json
+    │   ├── main.js
+    │   ├── EnergyDataProcessor.js
+    │   └── manageRH/
+    │       ├── info.json
+    │       ├── add_rh.js
+    │       ├── manage_rh.js
+    │       ├── select_rh.js
+    │       └── use_rh.js
+    │
+    ├── wildix/
+    │   ├── info.json
+    │   └── main.js
+    │
+    └── _template/         # Template per nuovi bookmarklet
+        ├── info.json
+        └── README.md
+```
+
+---
+
+## 🛠 Sviluppo
+
+### Requisiti
+
+- Git
+- Browser moderno
+- Editor di testo / IDE
+- (Opzionale) Server locale per test
+
+### Setup Locale
+
+```bash
+# Clone repository
+git clone https://github.com/pBielli/bookmarklet.git
+cd bookmarklet
+
+# Se usi un server locale (opzionale)
+python -m http.server 8000
+# oppure
+npx http-server
+```
+
+Poi apri `http://localhost:8000` nel browser.
+
+### Workflow di Sviluppo
+
+1. Crea un branch per la feature
+```bash
+git checkout -b feature/my-new-bookmarklet
+```
+
+2. Sviluppa il bookmarklet seguendo la guida sopra
+
+3. Testa localmente
+
+4. Commit e push
+```bash
+git add .
+git commit -m "Add: My New Bookmarklet"
+git push origin feature/my-new-bookmarklet
+```
+
+5. Crea Pull Request su GitHub
+
+### Debug
+
+- Usa **Console del Browser** (F12) per vedere log ed errori
+- Verifica il **Network Tab** per controllare il caricamento file
+- Testa su **browser differenti** (Chrome, Firefox, Edge, Safari)
+- Usa `console.log()` liberamente durante lo sviluppo
 
 ---
 
 ## 🔧 Configurazione
 
-Modifica `config.json` per personalizzare:
+### config.json
+
+Modifica `config.json` per personalizzare il progetto:
 
 ```json
 {
-  "project": {
-    "name": "Nome Progetto",
-    "version": "2.0.0",
-    "repository": "https://github.com/USERNAME/REPO",
-    "baseUrl": "https://USERNAME.github.io/REPO"
-  },
-  "git": {
-    "enabled": true,
-    "checkUpdates": true
-  }
+    "project": {
+        "name": "Bookmarklet Collection",
+        "version": "2.0.0",
+        "author": "pBielli",
+        "repository": "https://github.com/pBielli/bookmarklet",
+        "baseUrl": "https://pbielli.github.io/bookmarklet"
+    },
+    "ui": {
+        "navbar": {
+            "showVersion": true,
+            "showLastUpdate": true,
+            "logoText": "🔖 Bookmarklets"
+        },
+        "theme": "dark"
+    }
 }
 ```
 
 ---
 
-## 🧪 Test Locale
-
-```bash
-# Opzione 1: Python
-python -m http.server 8000
-
-# Opzione 2: Node.js
-npx http-server -p 8000
-
-# Apri browser
-open http://localhost:8000/index.html
-```
-
----
-
-## 📖 Guide
-
-- **[Migration Guide](MIGRATION_GUIDE.md)** - Come migrare dalla vecchia struttura
-- **[Template Guide](bookmarklets/_template/README.md)** - Come usare il template
-- **[API Documentation](docs/API.md)** - Documentazione API (coming soon)
-
----
-
 ## 🤝 Contribuire
 
+I contributi sono benvenuti! Per contribuire:
+
 1. Fork del repository
-2. Crea un branch per le modifiche (`git checkout -b feature/nuova-feature`)
-3. Commit delle modifiche (`git commit -m '✨ Aggiungo nuova feature'`)
-4. Push del branch (`git push origin feature/nuova-feature`)
+2. Crea un branch per la tua feature
+3. Commit delle modifiche
+4. Push al branch
 5. Apri una Pull Request
-
----
-
-## 📝 Convenzioni
-
-- **Nomi cartelle**: lowercase, kebab-case (`mio-bookmarklet`)
-- **Categorie**: `Business Tools`, `E-Commerce`, `Utilities`, `Communication`, ecc.
-- **Icons**: Emoji Unicode (`📦`, `⚡`, `🎯`, ecc.)
-- **Versioning**: Semantic Versioning (`MAJOR.MINOR.PATCH`)
 
 ---
 
@@ -322,38 +414,46 @@ open http://localhost:8000/index.html
 
 MIT License - Copyright (c) 2025 pBielli
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
 ---
 
-## 🌟 Star History
+## 🐛 Problemi Noti
 
-Se trovi utile questo progetto, lascia una ⭐ su GitHub!
+- Alcuni siti con CSP (Content Security Policy) stringente potrebbero bloccare l'iniezione
+- Su mobile, alcuni bookmarklet potrebbero richiedere più tap per attivarsi
+- La navbar potrebbe sovrapporsi a elementi fixed di alcuni siti
 
 ---
 
 ## 📞 Supporto
 
 - **Issues**: [GitHub Issues](https://github.com/pBielli/bookmarklet/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/pBielli/bookmarklet/discussions)
-- **Email**: [Contattami](mailto:your-email@example.com)
+- **Email**: [Contattami su GitHub](https://github.com/pBielli)
+- **Documentation**: Controlla la cartella del singolo bookmarklet per README specifici
 
 ---
 
-**Made with ❤️ by pBielli**
+## 🎉 Crediti
+
+Sviluppato con ❤️ da **pBielli**
+
+Tecnologie utilizzate:
+- Bootstrap 5.3.0
+- ExcelJS 4.3.0
+- GitHub Pages
+- Vanilla JavaScript
+
+---
+
+## 📈 Roadmap
+
+- [ ] Sistema di configurazione UI per bookmarklet
+- [ ] Export/Import configurazioni
+- [ ] Statistiche utilizzo
+- [ ] Dark/Light mode switch
+- [ ] Supporto multi-lingua
+- [ ] API per integrazione terze parti
+
+---
+
+**Ultima modifica:** Febbraio 2026  
+**Versione README:** 2.0.0
