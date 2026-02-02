@@ -123,9 +123,9 @@ const BookmarkletRegistry = {
                     return b.category.localeCompare(a.category);
 //localcompare di solito ritorna -1 se a < b, 1 se a > b, 0 se uguali, quindi per non farlo aggiungere ritorniamo 0
                 else
-                    return 0;
+                    return -1;
             }
-            return 0
+            return -1
             
         });
     },
