@@ -36,7 +36,7 @@ Una collezione moderna e modulare di bookmarklet per migliorare la tua esperienz
 
 ## 🌐 Demo Live
 
-Visita la pagina del progetto: [https://pbielli.github.io/bookmarklet](https://pbielli.github.io/bookmarklet)
+Visita la pagina del progetto: [https://pbielli.github.io/bookmarklet/app](https://pbielli.github.io/bookmarklet/app)
 
 ---
 
@@ -51,7 +51,7 @@ La navbar ti permette di accedere a tutti i bookmarklet da qualsiasi pagina web 
 **Passo 3:** Incolla questo codice come URL del segnalibro:
 
 ```javascript
-javascript:(function(){var s=document.createElement('script');s.src='https://pbielli.github.io/bookmarklet/core/navbar.js?v='+new Date().getTime();document.head.appendChild(s);})();
+javascript:(function(){var s=document.createElement('script');s.src='https://pbielli.github.io/bookmarklet/app/core/navbar.js?v='+new Date().getTime();document.head.appendChild(s);})();
 ```
 
 **Passo 4:** Salva il segnalibro
@@ -61,12 +61,12 @@ javascript:(function(){var s=document.createElement('script');s.src='https://pbi
 Per installare un singolo bookmarklet, sostituisci `FOLDER_NAME` con il nome della cartella del bookmarklet desiderato:
 
 ```javascript
-javascript:(function(){var s=document.createElement('script');s.src='https://pbielli.github.io/bookmarklet/bookmarklets/FOLDER_NAME/main.js?v='+new Date().getTime();document.head.appendChild(s);})();
+javascript:(function(){var s=document.createElement('script');s.src='https://pbielli.github.io/bookmarklet/app/bookmarklets/FOLDER_NAME/main.js?v='+new Date().getTime();document.head.appendChild(s);})();
 ```
 
 **Esempio per Azzurro ZCS:**
 ```javascript
-javascript:(function(){var s=document.createElement('script');s.src='https://pbielli.github.io/bookmarklet/bookmarklets/azzurro-zcs/main.js?v='+new Date().getTime();document.head.appendChild(s);})();
+javascript:(function(){var s=document.createElement('script');s.src='https://pbielli.github.io/bookmarklet/app/bookmarklets/azzurro-zcs/main.js?v='+new Date().getTime();document.head.appendChild(s);})();
 ```
 
 ---
@@ -178,7 +178,7 @@ Il file principale deve essere auto-contenuto e seguire questo pattern:
 
     // Configurazione
     const CONFIG = {
-        baseUrl: 'https://pbielli.github.io/bookmarklet',
+        baseUrl: 'https://pbielli.github.io/bookmarklet/app',
         version: '1.0.0'
     };
 
@@ -383,7 +383,7 @@ Modifica `config.json` per personalizzare il progetto:
         "version": "2.0.0",
         "author": "pBielli",
         "repository": "https://github.com/pBielli/bookmarklet",
-        "baseUrl": "https://pbielli.github.io/bookmarklet"
+        "baseUrl": "https://pbielli.github.io/bookmarklet/app"
     },
     "ui": {
         "navbar": {
