@@ -1,12 +1,17 @@
 {
   bookmarklets [
     {
-      id amazon,
+      id Amazon,
       enabled true,
       priority 1
     },
     {
-      id azzurro-zcs,
+      id AzzurroZcs,
+      enabled true,
+      priority 2
+    },
+    {
+      id Wildix,
       enabled true,
       priority 2
     }
