@@ -62,7 +62,7 @@ const BookmarkletRegistry = {
             this.bookmarkletFolders = await response.json();
             this.baseUrl = this.config.project.baseUrl;
         } catch (error) {
-            console.error('⚠️ Impossibile caricare bookmarklets.json, uso valori di default');
+            console.error('⚠️ Impossibile caricare bookmarklets.json, uso valori di default',response);
             this.bookmarkletFolders = [
             'Amazon',
             'Azzurro-zcs',
