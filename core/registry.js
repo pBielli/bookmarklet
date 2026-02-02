@@ -8,7 +8,6 @@ const BookmarkletRegistry = {
     bookmarklets: [],
     config: null,
     baseUrl: '',
-    bookmarkletFolders: [],
 
     /**
      * Inizializza il registry
@@ -59,15 +58,16 @@ const BookmarkletRegistry = {
     async loadBookmarkletList() {
         try {
             const response = await fetch('bookmarklets.json');
-            let bookmarklets_json = await response.json();
-            this.bookmarkletFolders = bookmarklets_json.bookmarklets.map(b => b.id);
+            const bookmarklets_json = await response.json();
+            // Usa direttamente l'attributo `bookmarklets` dal json
+            this.bookmarklets = bookmarklets_json.bookmarklets || [];
             this.baseUrl = this.config.project.baseUrl;
         } catch (error) {
             console.error('⚠️ Impossibile caricare bookmarklets.json, uso valori di default', error);
-            this.bookmarkletFolders = [
-                'Amazon',
-                'Azzurro-zcs',
-                'wildix'
+            this.bookmarklets = [
+                { id: 'Amazon' },
+                { id: 'Azzurro-zcs' },
+                { id: 'wildix' }
                 // Aggiungi qui nuove cartelle bookmarklet
             ];
         }
@@ -85,7 +85,16 @@ const BookmarkletRegistry = {
         //     // Aggiungi qui nuove cartelle bookmarklet
         // ];
 
-        for (const folder of this.bookmarkletFolders) {
+        // Ora `this.bookmarklets` contiene gli elementi definiti in bookmarklets.json
+        for (let i = 0; i < this.bookmarklets.length; i++) {
+            const entry = this.bookmarklets[i] || {};
+            const folder = entry.id;
+            const defaultEntry = {
+                    id: folder,
+                    path: `bookmarklets/${folder}`,
+                    ...entry
+                };
+            if (!folder) continue;
             try {
                 const infoPath = `bookmarklets/${folder}/info.json`;
                 const response = await fetch(infoPath);
@@ -93,18 +102,17 @@ const BookmarkletRegistry = {
                 if (response.ok) {
                     const info = await response.json();
 
-                    // Aggiungi info al registry
-                    this.bookmarklets.push({
-                        id: folder,
-                        path: `bookmarklets/${folder}`,
-                        ...info
-                    });
+                    // Sostituisci/integra l'entry esistente con i dati di info.json
+                    this.bookmarklets[i] = {...defaultEntry};
+                } else {
+                    // Mantieni l'entry originale ma assicura il campo path
+                    this.bookmarklets[i] = {...defaultEntry};
                 }
             } catch (error) {
                 console.warn(`⚠️ Impossibile caricare ${folder}:`, error);
+                this.bookmarklets[i] = {...defaultEntry};
             }
         }
-        console.log(this.bookmarklets);
         // Ordina per categoria e nome
         this.bookmarklets.sort((a, b) => {
 

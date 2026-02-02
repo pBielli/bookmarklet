@@ -1,5 +1,31 @@
 {
-  "nome": "AzzurroZCS - Energia",
-  "descrizione": "Elaborazione dei dati energetici e strumenti per la piattaforma ZCS",
-  "sitiCompatibili": ["*.zcsazzurro.com", "zcs.*", "*"]
+  "version": "1.0.0",
+  "name": "AzzurroZCS - Energia",
+  "description": "Elaborazione dei dati energetici e strumenti per la piattaforma ZCS",
+  "category": "Management",
+  "icon": "📦",
+  "author": "pBielli",
+  "dependencies": {
+    "bootstrap": true,
+    "exceljs": false,
+    "customLibs": []
+  },
+  "permissions": {
+    "requiresLogin": false,
+    "domains": [
+      "*.zcsazzurro.com",
+      "zcs.*",
+      "*"
+    ]
+  },
+  "files": {
+    "main": "main.js",
+    "styles": null,
+    "assets": []
+  },
+  "modules": [],
+  "configuration": {
+    "configurable": false,
+    "settings": {}
+  }
 }

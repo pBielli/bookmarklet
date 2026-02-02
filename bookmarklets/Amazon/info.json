@@ -1,7 +1,7 @@
 {
     "name": "Amazon Tools",
     "version": "1.0.0",
-    "description": "Strumenti per la gestione e analisi dei dati Amazon",
+    "description": "Strumento per la ricerca di prodotti Amazon",
     "category": "E-commerce",
     "icon": "📦",
     "author": "pBielli",
@@ -15,7 +15,7 @@
         "domains": ["*.amazon.com", "*.amazon.it", "amazon.com", "amazon.it"]
     },
     "files": {
-        "main": "main.js",
+        "main": "manageRH/manage_rh.js",
         "styles": null,
         "assets": []
     },
