@@ -16,7 +16,7 @@ Descrizione dettagliata del bookmarklet e cosa fa.
 ```javascript
 javascript:(function(){
     var s = document.createElement('script');
-    s.src = 'https://pbielli.github.io/bookmarklet/bookmarklets/FOLDER_NAME/main.js?v=' + new Date().getTime();
+    s.src = 'https://pbielli.github.io/bookmarklet/app/bookmarklets/FOLDER_NAME/main.js?v=' + new Date().getTime();
     document.head.appendChild(s);
 })();
 ```

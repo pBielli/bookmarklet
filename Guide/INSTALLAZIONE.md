@@ -42,7 +42,7 @@ cp README.md ./README.md
 Crea un segnalibro nel browser con questo codice:
 
 ```javascript
-javascript:(function(){var s=document.createElement('script');s.src='https://pbielli.github.io/bookmarklet/core/navbar.js?v='+new Date().getTime();document.head.appendChild(s);})();
+javascript:(function(){var s=document.createElement('script');s.src='https://pbielli.github.io/app/core/navbar.js?v='+new Date().getTime();document.head.appendChild(s);})();
 ```
 
 **Nome suggerito:** 🔖 My Bookmarklets
