@@ -20,19 +20,19 @@ const BookmarkletRegistry = {
 
             // Carica lista cartelle bookmarklet
             await this.loadBookmarkletList();
-            
+
             // Scopri tutti i bookmarklet
             await this.discoverBookmarklets();
-            
+
             // Popola UI
             this.populateNavbar();
             this.populateGrid();
-            
+
             // Carica info Git (versione e ultimo update)
             if (this.config.git.enabled) {
                 await this.loadGitInfo();
             }
-            
+
             console.log('✅ Registry inizializzato con', this.bookmarklets.length, 'bookmarklet');
         } catch (error) {
             console.error('❌ Errore inizializzazione registry:', error);
@@ -63,13 +63,13 @@ const BookmarkletRegistry = {
             this.bookmarkletFolders = bookmarklets_json.bookmarklets.map(b => b.id);
             this.baseUrl = this.config.project.baseUrl;
         } catch (error) {
-            console.error('⚠️ Impossibile caricare bookmarklets.json, uso valori di default',error);
+            console.error('⚠️ Impossibile caricare bookmarklets.json, uso valori di default', error);
             this.bookmarkletFolders = [
-            'Amazon',
-            'Azzurro-zcs',
-            'wildix'
-            // Aggiungi qui nuove cartelle bookmarklet
-        ];
+                'Amazon',
+                'Azzurro-zcs',
+                'wildix'
+                // Aggiungi qui nuove cartelle bookmarklet
+            ];
         }
     },
 
@@ -89,10 +89,10 @@ const BookmarkletRegistry = {
             try {
                 const infoPath = `bookmarklets/${folder}/info.json`;
                 const response = await fetch(infoPath);
-                
+
                 if (response.ok) {
                     const info = await response.json();
-                    
+
                     // Aggiungi info al registry
                     this.bookmarklets.push({
                         id: folder,
@@ -107,18 +107,14 @@ const BookmarkletRegistry = {
         console.log(this.bookmarklets);
         // Ordina per categoria e nome
         this.bookmarklets.sort((a, b) => {
-            
+
             if (a.category !== b.category) {
-                console.log("--")
-                console.log("a.category:",a.category)
-                console.log("b.category:",b.category)
-                let res=null;
-                if(a.category != null && a.category.localeCompare)
-                res= a.category.localeCompare(b.category);
-                else if(b.category != null && b.category.localeCompare)
-                    res= b.category.localeCompare(a.category);
-                console.log("res:",res)
-                return res
+                if (a.category != null && a.category.localeCompare)
+                    return a.category.localeCompare(b.category);
+                else if (b.category != null && b.category.localeCompare)
+                    return b.category.localeCompare(a.category);
+                else
+                    return null
             }
             return a.name.localeCompare(b.name);
         });
@@ -144,7 +140,7 @@ const BookmarkletRegistry = {
         Object.keys(categories).forEach(category => {
             const dropdown = document.createElement('li');
             dropdown.className = 'nav-item dropdown';
-            
+
             dropdown.innerHTML = `
                 <a class="nav-link dropdown-toggle" href="#" role="button" 
                    data-bs-toggle="dropdown" aria-expanded="false">
@@ -161,7 +157,7 @@ const BookmarkletRegistry = {
                     `).join('')}
                 </ul>
             `;
-            
+
             menu.appendChild(dropdown);
         });
     },
@@ -176,7 +172,7 @@ const BookmarkletRegistry = {
         this.bookmarklets.forEach(bm => {
             const card = document.createElement('div');
             card.className = 'col-md-4 mb-4';
-            
+
             card.innerHTML = `
                 <div class="card h-100 shadow-sm">
                     <div class="card-body">
@@ -195,7 +191,7 @@ const BookmarkletRegistry = {
                     </div>
                 </div>
             `;
-            
+
             grid.appendChild(card);
         });
     },
@@ -214,7 +210,7 @@ const BookmarkletRegistry = {
 
         titleEl.textContent = `${bm.icon || '📌'} ${bm.name}`;
         descEl.textContent = bm.description;
-        
+
         // Genera il codice del bookmarklet
         const bookmarkletCode = this.generateBookmarkletCode(bm);
         codeEl.textContent = bookmarkletCode;
@@ -239,7 +235,7 @@ const BookmarkletRegistry = {
      */
     generateBookmarkletCode(bm) {
         const mainScript = `${this.baseUrl}/${bm.path}/main.js`;
-        
+
         return `javascript:(function(){
     var s = document.createElement('script');
     s.src = '${mainScript}?v=' + new Date().getTime();
