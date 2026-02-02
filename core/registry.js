@@ -103,7 +103,8 @@ const BookmarkletRegistry = {
                     const info = await response.json();
 
                     // Sostituisci/integra l'entry esistente con i dati di info.json
-                    this.bookmarklets[i] = { ...defaultEntry };
+                    this.bookmarklets[i] = { ...defaultEntry, ...info };
+                    
                 } else {
                     // Mantieni l'entry originale ma assicura il campo path
                     this.bookmarklets[i] = { ...defaultEntry };
@@ -114,14 +115,7 @@ const BookmarkletRegistry = {
             }
         }
         // Ordina per categoria e nome
-        this.bookmarklets.sort((a, b) => {
-
-            const categoryA = a.category || ""; // Se null/undefined, metti stringa vuota
-            const categoryB = b.category || "";
-
-            return categoryA.localeCompare(categoryB);
-
-        });
+        
     },
 
     /**
