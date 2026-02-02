@@ -104,7 +104,7 @@ const BookmarkletRegistry = {
                 console.warn(`⚠️ Impossibile caricare ${folder}:`, error);
             }
         }
-
+        console.log(this.bookmarklets);
         // Ordina per categoria e nome
         this.bookmarklets.sort((a, b) => {
             if (a.category !== b.category) {
