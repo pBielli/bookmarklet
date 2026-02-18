@@ -15,6 +15,13 @@
   // Funzione per caricare JS
   function loadScript(src) {
     return new Promise((resolve, reject) => {
+      //aggiungi param fittizzio per cache busting, se ha gia dei parametri allora &r= altrimenti ?r=
+      // 
+      if(src.includes("?"))
+        src=src+"&r="+Date.now();
+      else
+        src=src+"?r="+Date.now();
+      
       if(document.querySelector(`script[src="${src}"]`)) return resolve(); // evita doppio load
       const script = document.createElement("script");
       script.src = src;
