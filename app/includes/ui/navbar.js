@@ -159,25 +159,50 @@
         collapse.className = 'collapse navbar-collapse';
         collapse.id = 'navbarContent';
 
-        // Menu bookmarklet
+        // Menu bookmarklet — raggruppato per categoria (come registry.js populateNavbar)
         const menu = document.createElement('ul');
         menu.className = 'navbar-nav me-auto mb-2 mb-lg-0';
 
-        bookmarklets.forEach(bookmarklet => {
+        // Raggruppa per categoria
+        const categories = {};
+        bookmarklets.forEach(bm => {
+            const cat = bm.category || 'Altro';
+            if (!categories[cat]) categories[cat] = [];
+            categories[cat].push(bm);
+        });
+
+        // Un dropdown Bootstrap per ogni categoria
+        Object.keys(categories).forEach(category => {
             const li = document.createElement('li');
-            li.className = 'nav-item';
+            li.className = 'nav-item dropdown';
 
-            const a = document.createElement('a');
-            a.className = 'nav-link';
-            a.href = '#';
-            a.textContent = `${bookmarklet.icon || '📌'} ${bookmarklet.name}`;
-            a.style.cursor = 'pointer';
-            a.onclick = (e) => {
-                e.preventDefault();
-                executeBookmarklet(bookmarklet.id);
-            };
+            const toggle = document.createElement('a');
+            toggle.className = 'nav-link dropdown-toggle';
+            toggle.href = '#';
+            toggle.setAttribute('role', 'button');
+            toggle.setAttribute('data-bs-toggle', 'dropdown');
+            toggle.setAttribute('aria-expanded', 'false');
+            toggle.textContent = category;
 
-            li.appendChild(a);
+            const dropdownMenu = document.createElement('ul');
+            dropdownMenu.className = 'dropdown-menu dropdown-menu-dark';
+
+            categories[category].forEach(bm => {
+                const item = document.createElement('li');
+                const a = document.createElement('a');
+                a.className = 'dropdown-item';
+                a.href = '#';
+                a.textContent = `${bm.icon || '📌'} ${bm.name}`;
+                a.onclick = (e) => {
+                    e.preventDefault();
+                    executeBookmarklet(bm.id);
+                };
+                item.appendChild(a);
+                dropdownMenu.appendChild(item);
+            });
+
+            li.appendChild(toggle);
+            li.appendChild(dropdownMenu);
             menu.appendChild(li);
         });
 
