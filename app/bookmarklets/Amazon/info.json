@@ -2,7 +2,7 @@
     "name": "Amazon Tools",
     "version": "1.0.0",
     "description": "Strumento per la ricerca di prodotti Amazon",
-    "category": "E-commerce",
+    "category": "Amazon",
     "icon": "📦",
     "author": "pBielli",
     "dependencies": {

@@ -195,7 +195,7 @@
                 a.textContent = `${bm.icon || '📌'} ${bm.name}`;
                 a.onclick = (e) => {
                     e.preventDefault();
-                    executeBookmarklet(bm.id);
+                    executeBookmarklet(bm.id,bm.files.main || "main.js");
                 };
                 item.appendChild(a);
                 dropdownMenu.appendChild(item);
@@ -275,9 +275,9 @@
     }
 
     // Esegue un bookmarklet
-    function executeBookmarklet(bookmarkletId) {
+    function executeBookmarklet(bookmarkletId,script="main.js") {
         const script = document.createElement('script');
-        script.src = `${CONFIG.baseUrl}/bookmarklets/${bookmarkletId}/main.js?v=${Date.now()}`;
+        script.src = `${CONFIG.baseUrl}/bookmarklets/${bookmarkletId}/${script}?v=${Date.now()}`;
         script.onerror = () => {
             alert(`Errore nel caricamento del bookmarklet: ${bookmarkletId}`);
         };
