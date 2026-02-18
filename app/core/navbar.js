@@ -21,7 +21,7 @@
         src=src+"&r="+Date.now();
       else
         src=src+"?r="+Date.now();
-      
+      console.log("Caricamento script:", src);
       if(document.querySelector(`script[src="${src}"]`)) return resolve(); // evita doppio load
       const script = document.createElement("script");
       script.src = src;
