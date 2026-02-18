@@ -8,7 +8,7 @@
   },
   "git": {
     "enabled": true,
-    "apiUrl": "https://api.github.com/repos/pBielli/bookmarklet/app",
+    "apiUrl": "https://api.github.com/repos/pBielli/bookmarklet",
     "checkUpdates": true
   },
   "ui": {
