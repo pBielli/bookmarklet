@@ -275,9 +275,9 @@
     }
 
     // Esegue un bookmarklet
-    function executeBookmarklet(bookmarkletId,script="main.js") {
+    function executeBookmarklet(bookmarkletId,script_url="main.js") {
         const script = document.createElement('script');
-        script.src = `${CONFIG.baseUrl}/bookmarklets/${bookmarkletId}/${script}?v=${Date.now()}`;
+        script.src = `${CONFIG.baseUrl}/bookmarklets/${bookmarkletId}/${script_url}?v=${Date.now()}`;
         script.onerror = () => {
             alert(`Errore nel caricamento del bookmarklet: ${bookmarkletId}`);
         };
