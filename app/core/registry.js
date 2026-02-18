@@ -7,7 +7,7 @@
 const BookmarkletRegistry = {
     bookmarklets: [],
     config: null,
-    baseUrl: '/bookmarklet/app',
+    baseUrl: 'https://pbielli.github.io/bookmarklet/app',
 
     /**
      * Inizializza il registry
