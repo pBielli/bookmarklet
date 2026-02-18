@@ -11,8 +11,6 @@
     // Configurazione
     const CONFIG = {
         baseUrl: 'https://pbielli.github.io/bookmarklet/app',
-        repoOwner: 'pbielli',
-        repoName: 'bookmarklet',
         navbarId: 'bookmarklet-navbar-injected',
         zIndex: 999999,
         animationDuration: 300
@@ -32,6 +30,7 @@
             navbar.style.animation = `slideOut ${CONFIG.animationDuration}ms ease-out`;
             setTimeout(() => {
                 navbar.remove();
+                // Ripristina il padding del body
                 document.body.style.paddingTop = '0';
             }, CONFIG.animationDuration);
         }
@@ -42,6 +41,7 @@
         return new Promise((resolve, reject) => {
             const dependencies = [];
 
+            // Carica Bootstrap CSS se non presente
             if (!document.querySelector('link[href*="bootstrap"]')) {
                 const bootstrapCSS = document.createElement('link');
                 bootstrapCSS.rel = 'stylesheet';
@@ -52,6 +52,7 @@
                 }));
             }
 
+            // Carica Bootstrap JS se non presente
             if (typeof window.bootstrap === 'undefined') {
                 const bootstrapJS = document.createElement('script');
                 bootstrapJS.src = 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js';
@@ -88,37 +89,8 @@
         }
     }
 
-    // Carica info repo da GitHub API (ultima modifica + dati creatore)
-    async function loadRepoInfo() {
-        try {
-            const response = await fetch(`https://api.github.com/repos/${CONFIG.repoOwner}/${CONFIG.repoName}`);
-            if (!response.ok) throw new Error('GitHub API error');
-            const data = await response.json();
-
-            const pushedAt = new Date(data.pushed_at);
-            const formattedDate = pushedAt.toLocaleDateString('it-IT', {
-                day: '2-digit', month: '2-digit', year: 'numeric'
-            });
-            const formattedTime = pushedAt.toLocaleTimeString('it-IT', {
-                hour: '2-digit', minute: '2-digit'
-            });
-
-            return {
-                lastUpdate: `${formattedDate} ${formattedTime}`,
-                ownerLogin: data.owner.login,
-                ownerAvatar: data.owner.avatar_url,
-                ownerUrl: data.owner.html_url,
-                repoUrl: data.html_url,
-                version: data.default_branch || 'main'
-            };
-        } catch (error) {
-            console.warn('Impossibile caricare info repo da GitHub API:', error);
-            return null;
-        }
-    }
-
     // Crea la struttura HTML della navbar
-    function createNavbarHTML(bookmarklets, repoInfo) {
+    function createNavbarHTML(bookmarklets) {
         const navbar = document.createElement('nav');
         navbar.id = CONFIG.navbarId;
         navbar.className = 'navbar navbar-expand-lg navbar-dark bg-dark';
@@ -139,11 +111,11 @@
         const brand = document.createElement('a');
         brand.className = 'navbar-brand';
         brand.href = '#';
-        brand.innerHTML = '📚 Bookmarklets';
+        brand.innerHTML = '🔖 Bookmarklets';
         brand.style.cursor = 'pointer';
         brand.onclick = (e) => {
             e.preventDefault();
-            window.open(repoInfo?.repoUrl || CONFIG.baseUrl, '_blank');
+            window.open(CONFIG.baseUrl, '_blank');
         };
 
         // Toggle button per mobile
@@ -181,65 +153,14 @@
             menu.appendChild(li);
         });
 
-        // === SEZIONE DESTRA: info repo + creatore + chiudi ===
-        const rightSection = document.createElement('div');
-        rightSection.className = 'd-flex align-items-center gap-2';
-
-        // Info versione e ultima modifica (come index.html)
-        if (repoInfo) {
-            const infoText = document.createElement('div');
-            infoText.className = 'navbar-text text-light';
-            infoText.style.fontFamily = "'Courier New', monospace";
-            infoText.innerHTML = `<small>🕐 ${repoInfo.lastUpdate}</small>`;
-            rightSection.appendChild(infoText);
-        }
-
-        // Bottone creatore repo con avatar
-        if (repoInfo?.ownerLogin) {
-            const creatorBtn = document.createElement('a');
-            creatorBtn.href = repoInfo.ownerUrl;
-            creatorBtn.target = '_blank';
-            creatorBtn.rel = 'noopener noreferrer';
-            creatorBtn.title = `Creatore: ${repoInfo.ownerLogin}`;
-            creatorBtn.style.cssText = `
-                display: inline-flex;
-                align-items: center;
-                gap: 6px;
-                text-decoration: none;
-                background: rgba(255,255,255,0.1);
-                border: 1px solid rgba(255,255,255,0.2);
-                border-radius: 20px;
-                padding: 3px 10px 3px 3px;
-                color: white;
-                font-size: 0.85rem;
-                transition: background 0.2s;
-                cursor: pointer;
-            `;
-            creatorBtn.onmouseover = () => creatorBtn.style.background = 'rgba(255,255,255,0.2)';
-            creatorBtn.onmouseout = () => creatorBtn.style.background = 'rgba(255,255,255,0.1)';
-
-            const avatar = document.createElement('img');
-            avatar.src = repoInfo.ownerAvatar;
-            avatar.alt = repoInfo.ownerLogin;
-            avatar.style.cssText = 'width:24px; height:24px; border-radius:50%; object-fit:cover;';
-
-            const loginSpan = document.createElement('span');
-            loginSpan.textContent = repoInfo.ownerLogin;
-
-            creatorBtn.appendChild(avatar);
-            creatorBtn.appendChild(loginSpan);
-            rightSection.appendChild(creatorBtn);
-        }
-
         // Bottone chiusura
         const closeBtn = document.createElement('button');
         closeBtn.className = 'btn btn-sm btn-outline-light';
         closeBtn.textContent = '✕ Chiudi';
         closeBtn.onclick = removeNavbar;
-        rightSection.appendChild(closeBtn);
 
         collapse.appendChild(menu);
-        collapse.appendChild(rightSection);
+        collapse.appendChild(closeBtn);
 
         container.appendChild(brand);
         container.appendChild(toggleBtn);
@@ -317,14 +238,12 @@
             loader.textContent = 'Caricamento bookmarklet navbar...';
             document.body.appendChild(loader);
 
-            // Carica dipendenze e dati in parallelo dove possibile
+            // Carica dipendenze
             await loadDependencies();
 
-            const [bookmarkletList, repoInfo] = await Promise.all([
-                loadBookmarklets(),
-                loadRepoInfo()
-            ]);
-
+            // Carica bookmarklet
+            const bookmarkletList = await loadBookmarklets();
+            
             // Carica info per ogni bookmarklet
             const bookmarkletsWithInfo = await Promise.all(
                 bookmarkletList.map(async (b) => {
@@ -342,7 +261,7 @@
             injectStyles();
 
             // Crea e inserisci navbar
-            const navbar = createNavbarHTML(bookmarkletsWithInfo, repoInfo);
+            const navbar = createNavbarHTML(bookmarkletsWithInfo);
             document.body.insertBefore(navbar, document.body.firstChild);
 
             // Aggiungi padding al body per evitare sovrapposizioni
