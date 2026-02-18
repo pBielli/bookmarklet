@@ -6,7 +6,7 @@
 const ResourceLoader = {
     loadedResources: new Set(),
     config: null,
-    baseUrl : '/bookmarklet/app',
+    baseUrl : 'https://pbielli.github.io/bookmarklet/app',
 
     /**
      * Inizializza il loader con la configurazione
